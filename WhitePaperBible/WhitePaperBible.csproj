@@ -1,0 +1,73 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceAssemblyReference>true</ProduceAssemblyReference>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.293082-pre8" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+    <PackageReference Include="LiveXAML" Version="2.1.70" />
+    <PackageReference Include="PropertyChanged.Fody" Version="2.6.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.0" />
+    <PackageReference Include="Clancey.SimpleAuth" Version="1.0.51" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="Services\" />
+    <Folder Include="Models\" />
+    <Folder Include="Assets\" />
+    <Folder Include="Views\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Behaviors\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Services\AuthenticateUserService.cs" />
+    <Compile Remove="Services\BaseService.cs" />
+    <Compile Remove="Services\BibleSearchService.cs" />
+    <Compile Remove="Services\DeletePaperService.cs" />
+    <Compile Remove="Services\GetFavoritesService.cs" />
+    <Compile Remove="Services\GetMyPapersService.cs" />
+    <Compile Remove="Services\GetPaperReferencesService.cs" />
+    <Compile Remove="Services\GetPapersByTagService.cs" />
+    <Compile Remove="Services\GetPapersService.cs" />
+    <Compile Remove="Services\GetTagsService.cs" />
+    <Compile Remove="Services\GetUserProfileService.cs" />
+    <Compile Remove="Services\RegisterUserService.cs" />
+    <Compile Remove="Services\SaveFavoriteService.cs" />
+    <Compile Remove="Services\SavePaperService.cs" />
+    <Compile Remove="Services\SaveReferenceService.cs" />
+    <Compile Remove="Services\SaveUserProfileService.cs" />
+    <Compile Remove="Repositories\DownloadService.cs" />
+    <Compile Remove="Repositories\FavoritesRepository.cs" />
+    <Compile Remove="Repositories\PaperRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Services\AuthenticateUserService.cs" />
+    <None Include="Services\BaseService.cs" />
+    <None Include="Services\BibleSearchService.cs" />
+    <None Include="Services\DeletePaperService.cs" />
+    <None Include="Services\GetFavoritesService.cs" />
+    <None Include="Services\GetMyPapersService.cs" />
+    <None Include="Services\GetPaperReferencesService.cs" />
+    <None Include="Services\GetPapersByTagService.cs" />
+    <None Include="Services\GetPapersService.cs" />
+    <None Include="Services\GetTagsService.cs" />
+    <None Include="Services\GetUserProfileService.cs" />
+    <None Include="Services\RegisterUserService.cs" />
+    <None Include="Services\SaveFavoriteService.cs" />
+    <None Include="Services\SavePaperService.cs" />
+    <None Include="Services\SaveReferenceService.cs" />
+    <None Include="Services\SaveUserProfileService.cs" />
+    <None Include="Repositories\DownloadService.cs" />
+    <None Include="Repositories\FavoritesRepository.cs" />
+    <None Include="Repositories\PaperRepository.cs" />
+  </ItemGroup>
+</Project>

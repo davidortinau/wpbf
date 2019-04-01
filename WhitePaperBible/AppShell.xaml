@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+       xmlns:local="clr-namespace:WhitePaperBible.Views" 
+       RouteHost="simplyprofound.com" 
+       RouteScheme="app"
+       Route=""
+       FlyoutBehavior="Disabled" 
+       Title="WhitePaperBible" 
+       x:Class="WhitePaperBible.AppShell"
+       Navigating="Handle_Navigating"
+       >
+    <!-- 
+        Styles and Resources 
+    -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#F2F2F2</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.ShellBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.ShellForegroundColor" Value="White" />
+                <Setter Property="Shell.ShellTitleColor" Value="#1d1d1d" />
+                <Setter Property="Shell.ShellDisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.ShellUnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.ShellTabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="Shell.ShellTabBarForegroundColor" Value="White" />
+                <Setter Property="Shell.ShellTabBarUnselectedColor" Value="#666666" />
+                <Setter Property="Shell.ShellTabBarTitleColor" Value="#CC0000" />
+            </Style>
+            <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+    
+    <ShellItem>
+        <TabContent Title="Papers" Route="papers" Icon="papers.png" ContentTemplate="{DataTemplate local:PapersPage}" />
+        <TabContent Title="Tags" Icon="tag.png" ContentTemplate="{DataTemplate local:TagsPage}" />
+        <TabContent Title="Favorites" Icon="favorites.png" ContentTemplate="{DataTemplate local:FavoritesPage}" />
+        <TabContent Title="Search" Icon="search.png" ContentTemplate="{DataTemplate local:SearchPage}" />
+        <TabContent Title="My Papers" Icon="my_papers.png" ContentTemplate="{DataTemplate local:MyPapersPage}" />
+        <TabContent Title="About" Icon="myDots.png" ContentTemplate="{DataTemplate local:AboutPage}" />
+    </ShellItem>
+    
+    <ShellItem Title="Other Stuff" Route="">
+        <ShellContent Route="paper" ContentTemplate="{DataTemplate local:PaperDetailPage}"/>
+    </ShellItem>
+</Shell>
