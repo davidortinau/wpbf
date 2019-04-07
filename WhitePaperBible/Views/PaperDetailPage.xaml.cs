@@ -9,25 +9,22 @@ namespace WhitePaperBible.Views
     {
         public string ID { get; set; }
 
+        public PaperDetailViewModel VM { get; set; }
+
         public PaperDetailPage()
         {
             InitializeComponent();
 
+            BindingContext = VM = new PaperDetailViewModel();
+
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             App.NavigationRoot = this;
 
-            BindingContext = new PaperDetailViewModel();
-
-            //var bb = new BackButtonBehavior()
-            //{
-            //    TextOverride = "Back",
-            //    Command = new Command((obj) =>
-            //    {
-            //        this.Navigation.PopAsync();
-            //    })
-            //};
-
-            //Shell.SetBackButtonBehavior(this, bb);
-
+            VM.ID = ID;
         }
     }
 }

@@ -1,5 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
+using Newtonsoft.Json;
+using WhitePaperBible.Core;
+using WhitePaperBible.Core.Models;
 using WhitePaperBible.Core.Services;
 using Xamarin.Forms;
 
@@ -12,45 +17,61 @@ namespace WhitePaperBible.ViewModels
 
         public ICommand PaperSelectedCommand { get; set; }
 
+        public bool IsFavorite { get; set; }
+
+        public bool IsOwned { get; set; }
+
+        public Paper Paper { get; set; }
+
+        public string Title { get; set; }
+
+        public string HtmlContent { get; set; }
+
         public string ID
         {
-            get;
-            set;
+            get => _id;
+            set
+            {
+                _id = value;
+                FetchPaper();
+            }
         }
 
         private IJSONWebClient _client;
+        private string _id;
 
         public PaperDetailViewModel()
         {
             _client = DependencyService.Resolve<IJSONWebClient>();
-            //FetchPaper();
-
-            //PaperSelectedCommand = new Command<Paper>(PaperSelected);
         }
 
-        //private async void PaperSelected(Paper p)
-        //{
-        //    await Shell.CurrentShell.GoToAsync($"./papers/paper_detail?id={p.id}");
-        //}
+        private async void FetchPaper()
+        {
+            await _client.OpenURL(Constants.BASE_URI + "papers/" + ID + "/references.json?caller=wpb-iPhone");
+            var payload = JsonConvert.DeserializeObject<List<ReferenceNode>>(_client.ResponseText);
 
-        //private async void FetchPaper()
-        //{
-        //    await _client.OpenURL(Constants.BASE_URI + "cmd/home.json?caller=wpb-iPhone");
-        //    var payload = JsonConvert.DeserializeObject<Payload>(_client.ResponseText);
-        //    var papers = new List<PaperNode>(payload.papers);
+            var references = new List<Reference>();
+            foreach (var node in payload)
+            {
+                references.Add(node.reference);
+            }
 
-        //    var AM = DependencyService.Resolve<AppModel>();
+            var AM = DependencyService.Resolve<AppModel>();
+            AM.CurrentPaper.references = references;
 
-        //    var references = new List<Reference>();
-        //    foreach (var node in (args as GetPaperReferencesServiceEventArgs).References)
-        //    {
-        //        references.Add(node.reference);
-        //    }
-        //    AM.CurrentPaper.references = references;
+            Title = AM.CurrentPaper.title;
+            HtmlContent = AM.CurrentPaper.HtmlContent;
 
-        //    Papers = new ObservableCollection<Paper>(AM.Papers);
-        //}
+            if (AM.Favorites != null && AM.Favorites.Count > 0)
+            {
+                IsFavorite = AM.Favorites.Any(paper => paper.id == AM.CurrentPaper.id);
+            }
+
+            IsOwned = (AM.IsLoggedIn) && (AM.CurrentPaper.user_id == AM.User.ID);
+        }
     }
+
+
 
     //public class Payload
     //{

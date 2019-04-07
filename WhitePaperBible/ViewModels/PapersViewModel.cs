@@ -58,12 +58,8 @@ namespace WhitePaperBible.ViewModels
         {
             var AM = DependencyService.Resolve<AppModel>();
             AM.CurrentPaper = SelectedPaper;
+            await App.NavigateToAsync(new PaperDetailPage() { ID = SelectedPaper.id.ToString() });
 
-            //await Shell.CurrentShell.GoToAsync($"app://///paper?id={SelectedPaper.id}");
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                await App.NavigateToAsync(new PaperDetailPage() { ID = SelectedPaper.id.ToString() });
-            });
         }
 
         string _keywords = string.Empty;

@@ -24,7 +24,7 @@
                 <Setter Property="Shell.ShellUnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.ShellTabBarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="Shell.ShellTabBarForegroundColor" Value="White" />
-                <Setter Property="Shell.ShellTabBarUnselectedColor" Value="#666666" />
+                <Setter Property="Shell.ShellTabBarUnselectedColor" Value="Green" />
                 <Setter Property="Shell.ShellTabBarTitleColor" Value="#CC0000" />
             </Style>
             <Style TargetType="ShellItem" BasedOn="{StaticResource BaseStyle}" />

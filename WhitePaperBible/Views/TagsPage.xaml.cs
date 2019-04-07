@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using WhitePaperBible.ViewModels;
 using Xamarin.Forms;
 
 namespace WhitePaperBible.Views
@@ -10,6 +10,7 @@ namespace WhitePaperBible.Views
         public TagsPage()
         {
             InitializeComponent();
+            BindingContext = new TagsViewModel();
         }
     }
 }

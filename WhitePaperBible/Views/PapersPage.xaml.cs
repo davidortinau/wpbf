@@ -13,12 +13,18 @@ namespace WhitePaperBible.Views
         {
             InitializeComponent();
 
-            App.NavigationRoot = this;
+
 
             BindingContext = new PapersViewModel();
 
             Shell.SetSearchHandler(this,
                 new PaperSearchHandler() { VM = (BindingContext as PapersViewModel) });
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            App.NavigationRoot = this;
         }
 
         void Handle_Clicked(object sender, System.EventArgs e)
