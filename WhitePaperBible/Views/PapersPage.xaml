@@ -14,7 +14,7 @@
     <CollectionView 
         x:Name="cv"
         ItemsSource="{Binding Papers}" 
-        SelectedItem="{Binding SelectedPaper, Mode=OneWayToSource}"
+        SelectedItem="{Binding SelectedPaper, Mode=TwoWay}"
         SelectionMode="Single"
         SelectionChangedCommand="{Binding PaperSelectedCommand}"
         >

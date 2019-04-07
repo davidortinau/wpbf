@@ -56,9 +56,14 @@ namespace WhitePaperBible.ViewModels
 
         private async void PaperSelected()
         {
-            var AM = DependencyService.Resolve<AppModel>();
-            AM.CurrentPaper = SelectedPaper;
-            await App.NavigateToAsync(new PaperDetailPage() { ID = SelectedPaper.id.ToString() });
+            if (SelectedPaper != null)
+            {
+                var AM = DependencyService.Resolve<AppModel>();
+                AM.CurrentPaper = SelectedPaper;
+                await App.NavigateToAsync(new PaperDetailPage() { ID = SelectedPaper.id.ToString() });
+
+                SelectedPaper = null;
+            }
 
         }
 
