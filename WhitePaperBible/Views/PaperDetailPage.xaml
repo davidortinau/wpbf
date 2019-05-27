@@ -1,17 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:WhitePaperBible.Views"
     x:Class="WhitePaperBible.Views.PaperDetailPage"
     Shell.TabBarIsVisible="false"
-    Title="Paper">
-    
-    <WebView>
-        <WebView.Source>
-            <HtmlWebViewSource 
-                Html="{Binding HtmlContent}"
-                />
-        </WebView.Source>
-    </WebView>
-    
+    Title="asdf">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="*" />
+            <RowDefinition
+                Height="60" />
+        </Grid.RowDefinitions>
+        <views:WebView
+            x:Name="ContentWebView"
+            Grid.RowSpan="2"
+            Scrolled="Handle_Scrolled">
+            <views:WebView.Source>
+                <HtmlWebViewSource
+                    Html="{Binding HtmlContent}" />
+            </views:WebView.Source>
+        </views:WebView>
+        <FlexLayout
+            x:Name="BottomToolbar"
+            Grid.Row="1"
+            BackgroundColor="Gray"
+            Padding="15,6">
+            <Button
+                Text="Favorite"
+                TextColor="White"
+                Command="{Binding ToggleFavoriteCommand}" />
+        </FlexLayout>
+    </Grid>
 </ContentPage>

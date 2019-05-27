@@ -30,7 +30,7 @@ namespace WhitePaperBible.Views
         void Handle_Clicked(object sender, System.EventArgs e)
         {
             var handler = Shell.GetSearchHandler(this);
-            handler.SearchBoxVisibility = (handler.SearchBoxVisibility == SearchBoxVisiblity.Hidden) ? SearchBoxVisiblity.Expanded : SearchBoxVisiblity.Hidden;
+            handler.SearchBoxVisibility = (handler.SearchBoxVisibility == SearchBoxVisibility.Hidden) ? SearchBoxVisibility.Expanded : SearchBoxVisibility.Hidden;
         }
     }
 
@@ -40,7 +40,7 @@ namespace WhitePaperBible.Views
 
         public PaperSearchHandler()
         {
-            SearchBoxVisibility = SearchBoxVisiblity.Expanded;
+            SearchBoxVisibility = SearchBoxVisibility.Expanded;
             ShowsResults = false;
             //Placeholder = "Find a seashell...";
             //this.QueryIcon = ImageSource.FromResource("search.png");

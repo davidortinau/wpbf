@@ -60,7 +60,8 @@ namespace WhitePaperBible.ViewModels
             {
                 var AM = DependencyService.Resolve<AppModel>();
                 AM.CurrentPaper = SelectedPaper;
-                await App.NavigateToAsync(new PaperDetailPage() { ID = SelectedPaper.id.ToString() });
+                //await App.NavigateToAsync(new PaperDetailPage() { ID = SelectedPaper.id.ToString() });
+                await Shell.Current.GoToAsync($"paper?id={SelectedPaper.id}");
 
                 SelectedPaper = null;
             }
@@ -92,14 +93,6 @@ namespace WhitePaperBible.ViewModels
 
             Papers = new ObservableCollection<Paper>(AM.Papers);
         }
-    }
-
-
-
-    public class Payload
-    {
-        public PaperNode[] papers;
-        public PaperHistoryNode[] popular;
     }
 }
 

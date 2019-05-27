@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
@@ -6,6 +7,7 @@ using Newtonsoft.Json;
 using WhitePaperBible.Core;
 using WhitePaperBible.Core.Models;
 using WhitePaperBible.Core.Services;
+using WhitePaperBible.Views;
 using Xamarin.Forms;
 
 namespace WhitePaperBible.ViewModels
@@ -15,7 +17,7 @@ namespace WhitePaperBible.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ICommand PaperSelectedCommand { get; set; }
+        public ICommand ToggleFavoriteCommand { get; set; }
 
         public bool IsFavorite { get; set; }
 
@@ -43,6 +45,22 @@ namespace WhitePaperBible.ViewModels
         public PaperDetailViewModel()
         {
             _client = DependencyService.Resolve<IJSONWebClient>();
+
+            ToggleFavoriteCommand = new Command(ToggleFavorite);
+        }
+
+        private async void ToggleFavorite()
+        {
+            var AM = DependencyService.Resolve<AppModel>();
+            if (!AM.IsLoggedIn)
+            {
+                await Shell.Current.Navigation.PushModalAsync(new LoginModalPage(), true);
+            }
+            else
+            {
+
+            }
+
         }
 
         private async void FetchPaper()

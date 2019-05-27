@@ -11,9 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.293082-pre8" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.0.1.464248-nightly" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
-    <PackageReference Include="LiveXAML" Version="2.1.70" />
     <PackageReference Include="PropertyChanged.Fody" Version="2.6.0" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.0" />
     <PackageReference Include="Clancey.SimpleAuth" Version="1.0.51" />

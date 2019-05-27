@@ -7,24 +7,47 @@ namespace WhitePaperBible.Views
 {
     public partial class PaperDetailPage : ContentPage
     {
-        public string ID { get; set; }
-
-        public PaperDetailViewModel VM { get; set; }
-
         public PaperDetailPage()
         {
             InitializeComponent();
 
-            BindingContext = VM = new PaperDetailViewModel();
-
+            BindingContext = new PaperDetailViewModel();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            App.NavigationRoot = this;
+            IsContentLoaded = true;
+        }
 
-            VM.ID = ID;
+
+        double lastScrollY = 0;
+        private bool IsContentLoaded;
+
+        void Handle_Scrolled(object sender, System.EventArgs e)
+        {
+            if (!IsContentLoaded)
+                return;
+
+            var isScrollingUp = lastScrollY < ContentWebView.ScrollY;
+            if (isScrollingUp)
+            {
+                // hide the nav bar and toolbar
+                Shell.SetNavBarIsVisible(this, false);
+                BottomToolbar.IsVisible = false;
+                lastScrollY = ContentWebView.ScrollY;
+            }
+            else
+            {
+                if ((lastScrollY - ContentWebView.ScrollY) > 100)
+                {
+                    Shell.SetNavBarIsVisible(this, true);
+                    BottomToolbar.IsVisible = true;
+                    lastScrollY = ContentWebView.ScrollY;
+                }
+            }
+
+
         }
     }
 }

@@ -5,12 +5,13 @@ using Xamarin.Forms;
 
 namespace WhitePaperBible.Views
 {
-    public partial class TagsPage : ContentPage
+    public partial class TagPapersPage : ContentPage
     {
-        public TagsPage()
+        public TagPapersPage()
         {
             InitializeComponent();
-            BindingContext = new TagsViewModel();
+
+            BindingContext = new TagPapersViewModel();
         }
 
         protected override void OnAppearing()

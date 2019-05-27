@@ -14,77 +14,78 @@ using Xamarin.Forms;
 
 namespace WhitePaperBible.ViewModels
 {
-    public class TagsViewModel : INotifyPropertyChanged
+    public class TagPapersViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<Tag> Tags
+        public ObservableCollection<Paper> Papers
         {
             get
             {
                 if (string.IsNullOrEmpty(_keywords))
                 {
-                    return _tags;
+                    return _papers;
                 }
                 else
                 {
-                    return new ObservableCollection<Tag>(_tags
-                    .Where(x => x.name.IndexOf(_keywords, StringComparison.InvariantCultureIgnoreCase) > -1)
-                    .ToList<Tag>());
+                    return new ObservableCollection<Paper>(_papers
+                    .Where(x => x.title.IndexOf(_keywords, StringComparison.InvariantCultureIgnoreCase) > -1)
+                    .ToList<Paper>());
                 }
             }
             set
             {
 
-                _tags = value;
+                _papers = value;
             }
         }
 
         public ICommand SelectedCommand { get; set; }
 
-        public Tag Selected { get; set; }
+        public Paper Selected { get; set; }
 
         private IJSONWebClient _client;
 
-        public TagsViewModel()
+        public TagPapersViewModel()
         {
             _client = DependencyService.Resolve<IJSONWebClient>();
             Fetch();
 
-            SelectedCommand = new Command(TagSelected);
+            SelectedCommand = new Command(PaperSelected);
         }
 
-        private async void TagSelected()
+        private async void PaperSelected()
         {
             var AM = DependencyService.Resolve<AppModel>();
-            AM.CurrentTag = Selected;
-            await App.NavigateToAsync(new TagPapersPage());
+            AM.CurrentPaper = Selected;
+            //await App.NavigateToAsync(new PaperDetailPage() { ID = Selected.id.ToString() });
 
         }
 
         string _keywords = string.Empty;
-        private ObservableCollection<Tag> _tags;
+        private ObservableCollection<Paper> _papers;
+        private string tagName;
 
         internal void FilterPapers(string keywords)
         {
             _keywords = keywords;
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(Tags)));
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(Papers)));
         }
 
         private async void Fetch()
         {
-            await _client.OpenURL(Constants.BASE_URI + "tag.json?caller=wpb-iPhone");
-            var tags = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TagNode>>(_client.ResponseText);
-
             var AM = DependencyService.Resolve<AppModel>();
 
-            AM.Tags = new List<Tag>();
-            foreach (var node in tags)
+            await _client.OpenURL(Constants.BASE_URI + "papers/tagged/" + AM.CurrentTag.name + ".json?caller=wpb-iPhone");
+            var paperNodes = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PaperNode>>(_client.ResponseText);
+
+            var p = new ObservableCollection<Paper>();
+            foreach (var node in paperNodes)
             {
-                AM.Tags.Add(node.tag);
+                p.Add(node.paper);
             }
 
-            Tags = new ObservableCollection<Tag>(AM.Tags);
+            Papers = p;
         }
     }
 }
