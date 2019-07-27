@@ -63,12 +63,11 @@
                         Padding="15,8"
                         CornerRadius="4">
                         <StackLayout
-                            Padding="0"
-                            CompressedLayout.IsHeadless="true">
+                            Padding="0">
                             <Label
                                 FontSize="15"
                                 MaxLines="1"
-                                TextColor="#1f1f1f"
+                                TextColor="Black"
                                 d:Text="{Binding .}"
                                 Text="{Binding title}" />
                             <Label

@@ -22,6 +22,10 @@ namespace WhitePaperBible.ViewModels
 
         public ICommand CloseModalCommand { get; set; }
 
+        public string Username { get; set; }
+
+        public string Password { get; set; }
+
         private IJSONWebClient _client;
 
         public LoginViewModel()
@@ -39,22 +43,23 @@ namespace WhitePaperBible.ViewModels
 
         private async void Login()
         {
-
-
-            //if (SelectedPaper != null)
-            //{
-            //    var AM = DependencyService.Resolve<AppModel>();
-            //    AM.CurrentPaper = SelectedPaper;
-            //    //await App.NavigateToAsync(new PaperDetailPage() { ID = SelectedPaper.id.ToString() });
-            //    await Shell.Current.GoToAsync($"paper?id={SelectedPaper.id}");
-
-            //    SelectedPaper = null;
-            //}
-
-            //await _client.OpenURL(Constants.BASE_URI + "cmd/home.json?caller=wpb-iPhone");
-            //var payload = Newtonsoft.Json.JsonConvert.DeserializeObject<Payload>(_client.ResponseText);
-
-
+            var AM = DependencyService.Resolve<AppModel>();
+            await _client.OpenURL(Constants.BASE_URI + String.Format("user_sessions/?user_session[username]={0}&user_session[password]={1}", Username, Password), MethodEnum.POST, false);
+            AM.UserSessionCookie = _client.UserSessionCookie;
+            if(_client.UserSessionCookie != null)
+            {
+                AM.StoreCredentials(Username, Password, _client.UserSessionCookie);
+                await Shell.Current.Navigation.PopModalAsync();
+            }
+            else
+            {
+                var forgot = await Shell.Current.DisplayAlert("Sorry", "Your username and/or password were not recognized.", "Reset Password", "Try Again");
+                if (forgot)
+                {
+                   
+                    Device.OpenUri(new Uri("http://www.whitepaperbible.org"));
+                }
+            }
         }
     }
 

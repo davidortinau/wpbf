@@ -1,5 +1,6 @@
 ﻿using Android.Content;
 using Android.OS;
+using Android.Views;
 using WhitePaperBible.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -34,6 +35,8 @@ namespace WhitePaperBible.Droid.Renderers
             {
                 this.SetupControl();
             }
+
+            
         }
 
         /// <summary>
@@ -53,6 +56,19 @@ namespace WhitePaperBible.Droid.Renderers
             {
                 this.Control.Settings.UseWideViewPort = true;
             }
+
+            this.Control.ScrollChange += Control_ScrollChange;
+        }
+
+        private void Control_ScrollChange(object sender, ScrollChangeEventArgs e)
+        {
+            (this.Element as Views.WebView).ScrollY = e.ScrollY;
+        }
+
+        public override bool DispatchTouchEvent(MotionEvent e)
+        {
+            Parent.RequestDisallowInterceptTouchEvent(true);
+            return base.DispatchTouchEvent(e);
         }
     }
 }

@@ -11,7 +11,6 @@ namespace WhitePaperBible.Views
         {
             InitializeComponent();
 
-            BindingContext = new LoginViewModel();
         }
     }
 }

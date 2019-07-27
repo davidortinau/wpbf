@@ -3,9 +3,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:WhitePaperBible.Views"
+    xmlns:local="clr-namespace:WhitePaperBible"
     x:Class="WhitePaperBible.Views.PaperDetailPage"
     Shell.TabBarIsVisible="false"
-    Title="asdf">
+    >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition
@@ -25,12 +26,21 @@
         <FlexLayout
             x:Name="BottomToolbar"
             Grid.Row="1"
-            BackgroundColor="Gray"
+            JustifyContent="Center"
+            BackgroundColor="#f2f2f2"
             Padding="15,6">
-            <Button
-                Text="Favorite"
-                TextColor="White"
-                Command="{Binding ToggleFavoriteCommand}" />
+            <ImageButton
+                FlexLayout.AlignSelf="Center"
+                BackgroundColor="transparent"
+                Command="{Binding ToggleFavoriteCommand}">
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="{StaticResource FontAwesome}"
+                        Color="#1d1d1d"
+                        Glyph="{x:Static local:IconFont.Star}"
+                        />
+                </ImageButton.Source>
+            </ImageButton>
         </FlexLayout>
     </Grid>
 </ContentPage>

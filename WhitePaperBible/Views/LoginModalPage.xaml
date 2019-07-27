@@ -2,40 +2,33 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
     x:Class="WhitePaperBible.Views.LoginModalPage">
-    
+
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Resources>
         <StyleSheet>
             <![CDATA[
-            .body {
-                color: #fff;
-                align-items: center;
-                justify-content: center;
-                background-color: #053C5E;
-            }
 
             .container {
                 background-color: #0A2239;
-                width: 300;
-                height: 340;
                 flex-direction: column;
-                margin-top: -30;
             }
 
             .login-form {
-                height: 260;
                 flex-direction: column;
-                margin-top: 20;
             }
 
             .logo {
                 font-size: 20;
-                margin-top: 40;
                 text-align: center;
+            color:white;
             }
 
             entry {
-                height: 50;
                 margin: 10 20 0;
                 color: #333;
             }
@@ -58,18 +51,30 @@
             }
             ]]>
         </StyleSheet>
-        
+
     </ContentPage.Resources>
-    
-    <Grid>
-        
-    
-    <ScrollView>
-        <FlexLayout StyleClass="body" x:Name="Form">
-            <FlexLayout x:Name="LoginForm" StyleClass="container">
-                <Label Text="Login" StyleClass="logo"/>
-                <FlexLayout StyleClass="login-form">
+
+
+    <ScrollView BackgroundColor="#053C5E">
+            <Grid Margin="15,0"
+                  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+
+
+            <Frame Visual="Material"
+                   HasShadow="True"
+                   BackgroundColor="#0A2239" 
+                        Grid.Row="1">
+            <FlexLayout 
+                class="container"
+                >
+                    <Label Text="Login" StyleClass="logo"/>
                     <Entry x:Name="UserNameEntry" 
+                           Text="{Binding Username}"
                            IsSpellCheckEnabled="false" 
                            Visual="Material"
                            TextColor="White"
@@ -78,6 +83,7 @@
                            Placeholder="UserName">
                     </Entry>
                     <Entry x:Name="PasswordEntry" 
+                           Text="{Binding Password}"
                            Placeholder="Password" 
                            Visual="Material"
                            TextColor="White"
@@ -85,29 +91,18 @@
                            BackgroundColor="Transparent"
                            IsPassword="true">
                     </Entry>
-                        
-                    <Button Text="Log in" Command="{Binding LoginCommand}"/>
+                    <BoxView FlexLayout.Basis="1" FlexLayout.Grow="1"/>
+                    <Button Text="Log in" 
+                            Visual="Material"
+                            Command="{Binding LoginCommand}"/>
                     <Button Text="Cancel" 
                             Margin="10"
                             BackgroundColor="Transparent" 
                             Command="{Binding CloseModalCommand}"/>
                 </FlexLayout>
-            </FlexLayout>
-        </FlexLayout>
+            </Frame>
+        </Grid>
+        
     </ScrollView>
         
-    <!--<StackLayout BackgroundColor="Black" 
-                 HeightRequest="62" 
-                 VerticalOptions="Start">
-        <Button Text="Close" 
-                HeightRequest="42"
-                HorizontalOptions="Start"
-                TextColor="White"
-                Padding="10"
-                Margin="0"
-                BackgroundColor="Transparent"
-                Command="{Binding CloseModalCommand}"/>            
-    </StackLayout>    
-        -->
-    </Grid>
 </ContentPage>
