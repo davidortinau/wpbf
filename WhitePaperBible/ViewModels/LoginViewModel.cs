@@ -55,8 +55,7 @@ namespace WhitePaperBible.ViewModels
             {
                 var forgot = await Shell.Current.DisplayAlert("Sorry", "Your username and/or password were not recognized.", "Reset Password", "Try Again");
                 if (forgot)
-                {
-                   
+                {                   
                     Device.OpenUri(new Uri("http://www.whitepaperbible.org"));
                 }
             }

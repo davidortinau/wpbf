@@ -58,7 +58,7 @@ namespace WhitePaperBible.ViewModels
         {
             var AM = DependencyService.Resolve<AppModel>();
             AM.CurrentTag = Selected;
-            await App.NavigateToAsync(new TagPapersPage());
+            await Shell.Current.Navigation.PushAsync(new TagPapersPage());
 
         }
 

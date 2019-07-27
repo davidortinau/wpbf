@@ -24,7 +24,6 @@ namespace WhitePaperBible.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            App.NavigationRoot = this;
         }
 
         void Handle_Clicked(object sender, System.EventArgs e)

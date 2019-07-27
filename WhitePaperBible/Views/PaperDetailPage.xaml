@@ -4,9 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:WhitePaperBible.Views"
     xmlns:local="clr-namespace:WhitePaperBible"
+    xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
     x:Class="WhitePaperBible.Views.PaperDetailPage"
     Shell.TabBarIsVisible="false"
     >
+
+    <ContentPage.BindingContext>
+        <vm:PaperDetailViewModel/>
+    </ContentPage.BindingContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition
@@ -36,7 +42,7 @@
                 <ImageButton.Source>
                     <FontImageSource
                         FontFamily="{StaticResource FontAwesome}"
-                        Color="#1d1d1d"
+                        Color="{Binding IsFavorite, Converter={StaticResource BoolToColor}, ConverterParameter='#CC0000;#666666'}"
                         Glyph="{x:Static local:IconFont.Star}"
                         />
                 </ImageButton.Source>
