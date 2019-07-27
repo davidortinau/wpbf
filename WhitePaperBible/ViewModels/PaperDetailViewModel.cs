@@ -58,7 +58,16 @@ namespace WhitePaperBible.ViewModels
             }
             else
             {
+                if(IsFavorite)
+                {
+                    AM.Favorites.Remove(AM.CurrentPaper);
+                }
+                else
+                {
+                    AM.Favorites.Add(AM.CurrentPaper);
+                }
 
+                IsFavorite = !IsFavorite;
             }
 
         }

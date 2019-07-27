@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonkeyCache.SQLite;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -79,6 +80,15 @@ namespace WhitePaperBible.ViewModels
 
         private async void FetchPapers()
         {
+            //if (!Barrel.Current.IsExpired(key: url))
+            //{
+            //    return Barrel.Current.Get<IEnumerable<Monkey>>(key: url);
+            //}
+            //else
+            //{
+
+            //}
+
             await _client.OpenURL(Constants.BASE_URI + "cmd/home.json?caller=wpb-iPhone");
             var payload = Newtonsoft.Json.JsonConvert.DeserializeObject<Payload>(_client.ResponseText);
             var papers = new List<PaperNode>(payload.papers);
@@ -90,6 +100,8 @@ namespace WhitePaperBible.ViewModels
             {
                 AM.Papers.Add(node.paper);
             }
+
+            Barrel.Current.Add(key: nameof(AppModel), data: AM, expireIn: TimeSpan.FromDays(1));
 
             Papers = new ObservableCollection<Paper>(AM.Papers);
         }

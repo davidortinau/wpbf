@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonkeyCache.SQLite;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,6 +50,8 @@ namespace WhitePaperBible.ViewModels
             if(_client.UserSessionCookie != null)
             {
                 AM.StoreCredentials(Username, Password, _client.UserSessionCookie);
+                Barrel.Current.Add(key: nameof(AppModel), data: AM, expireIn: TimeSpan.FromDays(1));
+
                 await Shell.Current.Navigation.PopModalAsync();
             }
             else
