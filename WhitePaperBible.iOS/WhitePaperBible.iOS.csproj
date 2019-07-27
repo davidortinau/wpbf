@@ -134,6 +134,7 @@
     <BundleResource Include="Resources\search%402x.png" />
     <BundleResource Include="Resources\tag.png" />
     <BundleResource Include="Resources\tag%402x.png" />
+    <BundleResource Include="Resources\fa-solid-900.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -144,13 +145,13 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.0.1.464248-nightly" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.504833-nightly" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
     <PackageReference Include="RestSharp">
       <Version>106.6.9</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.0.1.464248-nightly</Version>
+      <Version>4.2.0.504833-nightly</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

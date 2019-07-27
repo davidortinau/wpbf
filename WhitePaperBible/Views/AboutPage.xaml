@@ -1,5 +1,29 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="WhitePaperBible.Views.AboutPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="WhitePaperBible.Views.AboutPage"
+    Title="About">
+    <TableView>
+        <TableSection
+            Title="SUPPORT">
+            <TextCell
+                Text="Get Help" />
+            <TextCell
+                Text="Send Feedback" />
+        </TableSection>
+        <TableSection
+            Title="APP INFO">
+            <TextCell
+                Text="Version: 2.1" />
+            <TextCell
+                Text="Visit whitepaperbible.org" />
+            <TextCell
+                Text="Preface to the ESV Bible" />
+            <TextCell
+                Text="Licenses" />
+            <TextCell
+                Text="Terms and Conditions" />
+        </TableSection>
+    </TableView>
 </ContentPage>

@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="WhitePaperBible.App">
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WhitePaperBible.App">
     <Application.Resources>
+        <OnPlatform x:Key="FontAwesome"
+                    x:TypeArguments="x:String"
+                    Android="fa-solid-900ttf#Font Awesome 5 Free Solid"
+                    iOS="Font Awesome 5 Free" />
+
+        <Style x:Key="FontAwesomeLabel"
+               TargetType="Label">
+            <Setter Property="FontFamily"
+                    Value="{StaticResource FontAwesome}" />
+        </Style>
     </Application.Resources>
 </Application>

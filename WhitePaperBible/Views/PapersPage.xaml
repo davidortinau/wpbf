@@ -58,17 +58,17 @@
                     Padding="10">
                     <Frame
                         HasShadow="false"
-                        BackgroundColor="#1f1f1f"
-                        OutlineColor="Black"
-                        Padding="15"
-                        CornerRadius="10">
+                        BackgroundColor="#f1f1f1"
+                        OutlineColor="#f2f2f2"
+                        Padding="15,8"
+                        CornerRadius="4">
                         <StackLayout
                             Padding="0"
                             CompressedLayout.IsHeadless="true">
                             <Label
                                 FontSize="15"
                                 MaxLines="1"
-                                TextColor="#f1f1f1"
+                                TextColor="#1f1f1f"
                                 d:Text="{Binding .}"
                                 Text="{Binding title}" />
                             <Label
