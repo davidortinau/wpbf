@@ -11,7 +11,6 @@ namespace WhitePaperBible.Views
         {
             InitializeComponent();
 
-            BindingContext = new TagPapersViewModel();
         }
 
         protected override void OnAppearing()

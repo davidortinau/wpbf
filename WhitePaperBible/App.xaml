@@ -15,6 +15,6 @@
                     Value="{StaticResource FontAwesome}" />
         </Style>
 
-    <converters:BoolToColorConverter x:Key="BoolToColor"/>
+        <converters:BoolToColorConverter x:Key="BoolToColor"/>
     </Application.Resources>
 </Application>

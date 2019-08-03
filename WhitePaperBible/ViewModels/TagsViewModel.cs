@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonkeyCache.SQLite;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -84,6 +85,8 @@ namespace WhitePaperBible.ViewModels
                 AM.Tags.Add(node.tag);
             }
 
+            Barrel.Current.Add(key: nameof(AppModel), data: AM, expireIn: TimeSpan.FromDays(365));
+            
             Tags = new ObservableCollection<Tag>(AM.Tags);
         }
     }

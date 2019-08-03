@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:WhitePaperBible.Views"
+    xmlns:app="clr-namespace:WhitePaperBible"
     FlyoutBehavior="Disabled"
     Title="WhitePaperBible"
     x:Class="WhitePaperBible.AppShell"
@@ -52,30 +53,72 @@
         </ResourceDictionary>
     </Shell.Resources>
     <TabBar>
+        <Tab Title="Papers"
+            Route="papers">
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesome}"
+                    Glyph="{x:Static app:IconFont.StickyNote}"
+                    />
+            </Tab.Icon>
         <ShellContent
-            Title="Papers"
-            Route="papers"
-            Icon="papers.png"
+            
             ContentTemplate="{DataTemplate local:PapersPage}" />
-        <ShellContent
-            Title="Tags"
-            Icon="tag.png"
+        </Tab>
+        <Tab Title="Tags"
+            >
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesome}"
+                    Glyph="{x:Static app:IconFont.Tags}"
+                    />
+            </Tab.Icon>
+            <ShellContent
             ContentTemplate="{DataTemplate local:TagsPage}" />
+        </Tab>
+        <Tab Title="Favorites"
+            >
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesome}"
+                    Glyph="{x:Static app:IconFont.Star}"
+                    />
+            </Tab.Icon>
         <ShellContent
-            Title="Favorites"
-            Icon="favorites.png"
             ContentTemplate="{DataTemplate local:FavoritesPage}" />
-        <ShellContent
-            Title="Search"
-            Icon="search.png"
+        </Tab>
+        <Tab Title="Search"
+            >
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesome}"
+                    Glyph="{x:Static app:IconFont.Search}"
+                    />
+            </Tab.Icon>
+            <ShellContent
             ContentTemplate="{DataTemplate local:SearchPage}" />
-        <ShellContent
-            Title="My Papers"
-            Icon="my_papers.png"
+        </Tab>
+        <Tab Title="My Papers"
+            >
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesome}"
+                    Glyph="{x:Static app:IconFont.PersonBooth}"
+                    />
+            </Tab.Icon>
+            <ShellContent
             ContentTemplate="{DataTemplate local:MyPapersPage}" />
-        <ShellContent
-            Title="About"
-            Icon="myDots.png"
+        </Tab>
+        <Tab Title="About"
+            >
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesome}"
+                    Glyph="{x:Static app:IconFont.Lightbulb}"
+                    />
+            </Tab.Icon>
+            <ShellContent
             ContentTemplate="{DataTemplate local:AboutPage}" />
+        </Tab>
     </TabBar>
 </Shell>

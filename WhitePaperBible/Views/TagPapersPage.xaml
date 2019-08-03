@@ -5,9 +5,14 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
     Shell.TabBarIsVisible="false"
     Title="Papers"
     x:Class="WhitePaperBible.Views.TagPapersPage">
+
+    <ContentPage.BindingContext>
+        <vm:TagPapersViewModel/>
+    </ContentPage.BindingContext>
     
     <CollectionView 
         x:Name="cv"

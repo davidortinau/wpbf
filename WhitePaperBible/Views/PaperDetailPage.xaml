@@ -32,7 +32,7 @@
         <FlexLayout
             x:Name="BottomToolbar"
             Grid.Row="1"
-            JustifyContent="Center"
+            JustifyContent="SpaceEvenly"
             BackgroundColor="#f2f2f2"
             Padding="15,6">
             <ImageButton
@@ -44,6 +44,18 @@
                         FontFamily="{StaticResource FontAwesome}"
                         Color="{Binding IsFavorite, Converter={StaticResource BoolToColor}, ConverterParameter='#CC0000;#666666'}"
                         Glyph="{x:Static local:IconFont.Star}"
+                        />
+                </ImageButton.Source>
+            </ImageButton>
+            <ImageButton
+                FlexLayout.AlignSelf="Center"
+                BackgroundColor="transparent"
+                Command="{Binding ShareCommand}">
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="{StaticResource FontAwesome}"
+                        Color="#666666"
+                        Glyph="{x:Static local:IconFont.ShareSquare}"
                         />
                 </ImageButton.Source>
             </ImageButton>

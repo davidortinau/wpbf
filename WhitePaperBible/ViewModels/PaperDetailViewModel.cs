@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using WhitePaperBible.Core;
 using WhitePaperBible.Core.Models;
 using WhitePaperBible.Core.Services;
 using WhitePaperBible.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace WhitePaperBible.ViewModels
@@ -18,6 +20,8 @@ namespace WhitePaperBible.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand ToggleFavoriteCommand { get; set; }
+
+        public ICommand ShareCommand { get; set; }
 
         public bool IsFavorite { get; set; }
 
@@ -47,6 +51,20 @@ namespace WhitePaperBible.ViewModels
             _client = DependencyService.Resolve<IJSONWebClient>();
 
             ToggleFavoriteCommand = new Command(ToggleFavorite);
+            ShareCommand = new Command(async ()=> await OnShare());
+        }
+
+        private async Task OnShare()
+        {
+            //NSString* paperTitle = [NSString stringWithFormat: @"%@",[paper valueForKey: @"title"]];
+            //NSString* paperURLTitle = [NSString stringWithFormat: @"%@",[paper valueForKey: @"url_title"]];
+            //NSString* subject = [NSString stringWithFormat: @"White Paper Bible: %@", paperTitle];
+            //NSString* paperFullURL = [NSString stringWithFormat: @"%@/papers/%@", kSiteURL, paperURLTitle];
+
+            await Share.RequestAsync(new ShareTextRequest(
+                Paper.title,
+                $"http://www.whitepaperbible.org/papers/{Paper.url_title}"
+            ));
         }
 
         private async void ToggleFavorite()
@@ -95,6 +113,7 @@ namespace WhitePaperBible.ViewModels
             }
 
             IsOwned = (AM.IsLoggedIn) && (AM.CurrentPaper.user_id == AM.User.ID);
+            Paper = AM.CurrentPaper;
         }
     }
 
