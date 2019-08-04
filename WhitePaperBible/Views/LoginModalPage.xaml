@@ -29,7 +29,6 @@
             }
 
             entry {
-                margin: 10 20 0;
                 color: #333;
             }
 
@@ -77,6 +76,7 @@
                            Text="{Binding Username}"
                            IsSpellCheckEnabled="false" 
                            Visual="Material"
+                           ReturnType="Next"
                            TextColor="White"
                            PlaceholderColor="White"
                            BackgroundColor="Transparent"
@@ -86,6 +86,8 @@
                            Text="{Binding Password}"
                            Placeholder="Password" 
                            Visual="Material"
+                           ReturnType="Go"
+                           ReturnCommand="{Binding LoginCommand}"
                            TextColor="White"
                            PlaceholderColor="White"
                            BackgroundColor="Transparent"

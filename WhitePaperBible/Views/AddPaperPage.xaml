@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
+             xmlns:local="clr-namespace:WhitePaperBible"
+             mc:Ignorable="d"
+             BackgroundColor="White"
+             x:Class="WhitePaperBible.Views.AddPaperPage">
+    <ContentPage.BindingContext>
+        <vm:AddPaperViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{OnPlatform iOS=88,Default=60}"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TableView Intent="Form" Grid.Row="1" HasUnevenRows="True">
+            <TableRoot>
+                <TableSection>
+                    <EntryCell Placeholder="Title" Text="{Binding Title}"/>
+                    <ViewCell>
+                        <ContentView Padding="10" HeightRequest="100">
+                            <Editor Placeholder="Description"
+                                    
+                                    Text="{Binding Description}"/>
+                        </ContentView>
+                    </ViewCell>
+                    <ViewCell>
+                        <FlexLayout Direction="Row" 
+                                    JustifyContent="SpaceBetween"
+                                    AlignItems="Center"
+                                    HeightRequest="44"
+                                     Margin="15,0">
+                            <FlexLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding GoToTagsCommand}"/>
+                            </FlexLayout.GestureRecognizers>
+                            <Label Text="Tags" FontSize="16" 
+                                   TextColor="#444444"
+                                   VerticalOptions="Center"/>
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource
+                                        Color="#4c4c4c"
+                                        Size="14"
+                                        FontFamily="{StaticResource FontAwesome}"
+                                        Glyph="{x:Static local:IconFont.ChevronRight}"/>
+                                </Image.Source>
+                            </Image>
+                        </FlexLayout>
+                    </ViewCell>
+
+                </TableSection>
+                <TableSection Title="VERSES">
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" HeightRequest="44"
+                                     Margin="15,0">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding AddVerseCommand}"/>
+                            </StackLayout.GestureRecognizers>
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource
+                                        Color="#444444"
+                                        Size="14"
+                                        FontFamily="{StaticResource FontAwesome}"
+                                        Glyph="{x:Static local:IconFont.PlusCircle}"/>
+                                </Image.Source>
+                            </Image>
+                            <Label Text="Add Verse" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+
+        <FlexLayout BackgroundColor="#444444" Direction="Row"
+                    JustifyContent="SpaceBetween"
+                    Padding="15,0"
+                    >
+            <ImageButton Command="{Binding CancelCommand}"
+                         BackgroundColor="transparent"
+                         >
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="{StaticResource FontAwesome}"
+                        Glyph="{x:Static local:IconFont.ChevronLeft}"/>
+                </ImageButton.Source>
+            </ImageButton>
+
+            <Button Text="Save"
+                    TextColor="White"
+                    BackgroundColor="transparent"
+                    Command="{Binding SaveCommand}"/>
+
+        </FlexLayout>
+        
+    </Grid>
+
+
+</ContentPage>

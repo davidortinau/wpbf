@@ -22,7 +22,6 @@
     <Folder Include="Services\" />
     <Folder Include="Models\" />
     <Folder Include="Assets\" />
-    <Folder Include="Views\" />
     <Folder Include="Repositories\" />
     <Folder Include="Behaviors\" />
     <Folder Include="Common\" />
@@ -68,5 +67,10 @@
     <None Include="Repositories\DownloadService.cs" />
     <None Include="Repositories\FavoritesRepository.cs" />
     <None Include="Repositories\PaperRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Views\AddPaperPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

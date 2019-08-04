@@ -15,11 +15,11 @@
             Title="SUPPORT">
             <TextCell
                 Command="{Binding SendEmail}"
-                CommandParameter="mailto:dave@simpylprofound.com"
+                CommandParameter="dave@simpylprofound.com"
                 Text="Get Help" />
             <TextCell
                 Command="{Binding SendEmail}"
-                CommandParameter="mailto:dave@simpylprofound.com"
+                CommandParameter="dave@simpylprofound.com"
                 Text="Send Feedback" />
         </TableSection>
         <TableSection
