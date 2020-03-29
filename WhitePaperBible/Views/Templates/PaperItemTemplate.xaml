@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="WhitePaperBible.Views.Templates.PaperItemTemplate">
+    
+    <Frame
+        HasShadow="false"
+        BackgroundColor="#f1f1f1"
+        OutlineColor="#f2f2f2"
+        Padding="15,8"
+        CornerRadius="4">
+        <StackLayout
+            Padding="0">
+            <Label
+                FontSize="15"
+                MaxLines="1"
+                TextColor="Black"
+                Text="{Binding title}" />
+            <Label
+                FontSize="11"
+                TextColor="Gray"
+                Text="{Binding Author.Name}" />
+        </StackLayout>
+    </Frame>
+                    
+</ContentView>

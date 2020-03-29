@@ -15,7 +15,7 @@
         <vm:PaperDetailViewModel/>
     </ContentPage.BindingContext>
     
-    <Grid BackgroundColor="DarkRed">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="*" />

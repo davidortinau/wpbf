@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WhitePaperBible.Core.Models;
 using WhitePaperBible.ViewModels;
+using WhitePaperBible.Views.Templates;
 using Xamarin.Forms;
 
 namespace WhitePaperBible.Views
@@ -13,19 +14,24 @@ namespace WhitePaperBible.Views
         {
             InitializeComponent();
 
-
-
             BindingContext = new PapersViewModel();
 
-            Shell.SetSearchHandler(this,
-                new PaperSearchHandler() { VM = (BindingContext as PapersViewModel) });
+            //Shell.SetSearchHandler(this,
+            //    new PaperSearchHandler() { VM = (BindingContext as PapersViewModel) });
         }
 
-        protected override void OnAppearing()
+        void SearchBar_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
-            base.OnAppearing();
+            if (string.IsNullOrEmpty(e.NewTextValue))
+            {
+                //ItemsSource = null;
+                (BindingContext as PapersViewModel).FilterPapers(string.Empty);
+            }
+            else
+            {
+                (BindingContext as PapersViewModel).FilterPapers(e.NewTextValue);
+            }
         }
-
     }
 
     class PaperSearchHandler : SearchHandler
@@ -35,12 +41,21 @@ namespace WhitePaperBible.Views
         public PaperSearchHandler()
         {
             SearchBoxVisibility = SearchBoxVisibility.Expanded;
-            ShowsResults = false;
+            ShowsResults = true;
+            this.ItemTemplate = new DataTemplate(typeof(PaperItemTemplate));
+            
         }
+
 
         protected override void OnQueryChanged(string oldValue, string newValue)
         {
             base.OnQueryChanged(oldValue, newValue);
+
+            if(ItemsSource == null)
+            {
+                ItemsSource = VM.Papers;
+            }
+
             if (string.IsNullOrEmpty(newValue))
             {
                 //ItemsSource = null;
@@ -49,18 +64,14 @@ namespace WhitePaperBible.Views
             else
             {
                 VM.FilterPapers(newValue);
-                //var results = new List<Paper>();
-                //results = VM
-                //    .Papers
-                //    .Where(x => x.title.IndexOf(newValue, StringComparison.InvariantCultureIgnoreCase) > -1)
-                //    .ToList<Paper>();
-                //ItemsSource = results;
             }
         }
 
         protected override void OnItemSelected(object item)
         {
             base.OnItemSelected(item);
+
+            VM.PaperSelectedCommand.Execute((Paper)item);
         }
     }
 }

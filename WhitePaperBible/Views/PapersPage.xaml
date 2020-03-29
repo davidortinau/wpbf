@@ -5,58 +5,43 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
+    xmlns:t="clr-namespace:WhitePaperBible.Views.Templates"
     mc:Ignorable="d"
     x:Class="WhitePaperBible.Views.PapersPage"
     Title="Papers">
-    <CollectionView
-        x:Name="cv"
-        ItemsSource="{Binding Papers}">
-        <CollectionView.ItemsLayout>
-            <GridItemsLayout
-                Orientation="Vertical"
-                Span="1" />
-        </CollectionView.ItemsLayout>
-        <CollectionView.EmptyView>
-            <StackLayout>
-                <Label
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand"
-                    Text="Loading Papers" />
-            </StackLayout>
-        </CollectionView.EmptyView>
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <ContentView
-                    Padding="10">
-                    <Frame
-                        HasShadow="false"
-                        BackgroundColor="#f1f1f1"
-                        OutlineColor="#f2f2f2"
-                        Padding="15,8"
-                        CornerRadius="4">
-                        <StackLayout
-                            Padding="0">
-                            <Label
-                                FontSize="15"
-                                MaxLines="1"
-                                TextColor="Black"
-                                d:Text="{Binding .}"
-                                Text="{Binding title}" />
-                            <Label
-                                FontSize="11"
-                                TextColor="Gray"
-                                d:Text="Sally Someone"
-                                Text="{Binding Author.Name}" />
-                        </StackLayout>
-                    </Frame>
-                    <ContentView.GestureRecognizers>
-                        <TapGestureRecognizer
-                            Command="{Binding PaperSelectedCommand,
+    <StackLayout>
+        <SearchBar TextChanged="SearchBar_TextChanged" />
+
+        <CollectionView
+            x:Name="cv"
+            ItemsSource="{Binding Papers}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    HorizontalItemSpacing="10"
+                    VerticalItemSpacing="10"
+                    Span="1" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.EmptyView>
+                <StackLayout>
+                    <Label
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        Text="Loading Papers" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <t:PaperItemTemplate Padding="10,0">
+                        <t:PaperItemTemplate.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding PaperSelectedCommand,
                                 Source={RelativeSource AncestorType={x:Type vm:PapersViewModel}}}"
-                            CommandParameter="{Binding .}"/>
-                    </ContentView.GestureRecognizers>
-                </ContentView>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                                CommandParameter="{Binding .}" />
+                        </t:PaperItemTemplate.GestureRecognizers>
+                    </t:PaperItemTemplate>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>

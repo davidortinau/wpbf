@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using WhitePaperBible.ViewModels;
 using Xamarin.Forms;
 
@@ -38,6 +39,7 @@ namespace WhitePaperBible.Views
             }
             else
             {
+                Debug.WriteLine($"Dif > 100: {(lastScrollY - ContentWebView.ScrollY)}");
                 if ((lastScrollY - ContentWebView.ScrollY) > 100)
                 {
                     Shell.SetNavBarIsVisible(this, true);
