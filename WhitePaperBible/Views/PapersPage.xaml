@@ -4,46 +4,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
     mc:Ignorable="d"
     x:Class="WhitePaperBible.Views.PapersPage"
     Title="Papers">
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Icon="search.png" Clicked="Handle_Clicked"/>
-    </ContentPage.ToolbarItems>-->
     <CollectionView
         x:Name="cv"
-        ItemsSource="{Binding Papers}"
-        SelectedItem="{Binding SelectedPaper, Mode=TwoWay}"
-        SelectionMode="Single"
-        SelectionChangedCommand="{Binding PaperSelectedCommand}">
+        ItemsSource="{Binding Papers}">
         <CollectionView.ItemsLayout>
             <GridItemsLayout
                 Orientation="Vertical"
                 Span="1" />
         </CollectionView.ItemsLayout>
-        <d:CollectionView.ItemsSource>
-            <x:Array
-                Type="{x:Type x:String}">
-                <x:String>Lorum Ipsum</x:String>
-                <x:String>Your feedback on the experience of converting a ListView to a CollectionView is incredibly appreciated.</x:String>
-                <x:String>Here are three general questions:</x:String>
-                <x:String>How was the experience of converting your existing ListView to a CollectionView?</x:String>
-                <x:String>How is the performance compared to the ListView?</x:String>
-                <x:String>Is there a specific piece of functionality that you'd like to see?</x:String>
-                <x:String>This is a CollectionView!</x:String>
-                <x:String>Your feedback on the experience of converting a ListView to a CollectionView is incredibly appreciated.</x:String>
-                <x:String>Here are three general questions:</x:String>
-                <x:String>How was the experience of converting your existing ListView to a CollectionView?</x:String>
-                <x:String>How is the performance compared to the ListView?</x:String>
-                <x:String>Is there a specific piece of functionality that you'd like to see?</x:String>
-                <x:String>This is a CollectionView!</x:String>
-                <x:String>Your feedback on the experience of converting a ListView to a CollectionView is incredibly appreciated.</x:String>
-                <x:String>Here are three general questions:</x:String>
-                <x:String>How was the experience of converting your existing ListView to a CollectionView?</x:String>
-                <x:String>How is the performance compared to the ListView?</x:String>
-                <x:String>Is there a specific piece of functionality that you'd like to see?</x:String>
-            </x:Array>
-        </d:CollectionView.ItemsSource>
         <CollectionView.EmptyView>
             <StackLayout>
                 <Label
@@ -77,6 +49,12 @@
                                 Text="{Binding Author.Name}" />
                         </StackLayout>
                     </Frame>
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding PaperSelectedCommand,
+                                Source={RelativeSource AncestorType={x:Type vm:PapersViewModel}}}"
+                            CommandParameter="{Binding .}"/>
+                    </ContentView.GestureRecognizers>
                 </ContentView>
             </DataTemplate>
         </CollectionView.ItemTemplate>

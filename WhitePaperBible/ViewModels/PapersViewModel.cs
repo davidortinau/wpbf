@@ -52,19 +52,17 @@ namespace WhitePaperBible.ViewModels
             _client = DependencyService.Resolve<IJSONWebClient>();
             FetchPapers();
 
-            PaperSelectedCommand = new Command(PaperSelected);
+            PaperSelectedCommand = new Command<Paper>(PaperSelected);
         }
 
-        private async void PaperSelected()
+        private async void PaperSelected(Paper paper)
         {
-            if (SelectedPaper != null)
+            if (paper != null)
             {
                 var AM = DependencyService.Resolve<AppModel>();
-                AM.CurrentPaper = SelectedPaper;
+                AM.CurrentPaper = paper;
                 //await App.NavigateToAsync(new PaperDetailPage() { ID = SelectedPaper.id.ToString() });
-                await Shell.Current.GoToAsync($"paper?id={SelectedPaper.id}");
-
-                SelectedPaper = null;
+                await Shell.Current.GoToAsync($"paper?id={paper.id}");
             }
 
         }

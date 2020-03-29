@@ -57,6 +57,7 @@
             Route="papers">
             <Tab.Icon>
                 <FontImageSource
+                    Size="16"
                     FontFamily="{StaticResource FontAwesome}"
                     Glyph="{x:Static app:IconFont.StickyNote}"
                     />
@@ -69,6 +70,7 @@
             >
             <Tab.Icon>
                 <FontImageSource
+                    Size="16"
                     FontFamily="{StaticResource FontAwesome}"
                     Glyph="{x:Static app:IconFont.Tags}"
                     />
@@ -80,6 +82,7 @@
             >
             <Tab.Icon>
                 <FontImageSource
+                    Size="16"
                     FontFamily="{StaticResource FontAwesome}"
                     Glyph="{x:Static app:IconFont.Star}"
                     />
@@ -91,6 +94,7 @@
             >
             <Tab.Icon>
                 <FontImageSource
+                    Size="16"
                     FontFamily="{StaticResource FontAwesome}"
                     Glyph="{x:Static app:IconFont.Search}"
                     />
@@ -102,6 +106,7 @@
             >
             <Tab.Icon>
                 <FontImageSource
+                    Size="16"
                     FontFamily="{StaticResource FontAwesome}"
                     Glyph="{x:Static app:IconFont.PersonBooth}"
                     />
@@ -113,6 +118,7 @@
             >
             <Tab.Icon>
                 <FontImageSource
+                    Size="16"
                     FontFamily="{StaticResource FontAwesome}"
                     Glyph="{x:Static app:IconFont.Lightbulb}"
                     />

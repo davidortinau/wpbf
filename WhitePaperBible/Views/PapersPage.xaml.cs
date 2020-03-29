@@ -26,11 +26,6 @@ namespace WhitePaperBible.Views
             base.OnAppearing();
         }
 
-        void Handle_Clicked(object sender, System.EventArgs e)
-        {
-            var handler = Shell.GetSearchHandler(this);
-            handler.SearchBoxVisibility = (handler.SearchBoxVisibility == SearchBoxVisibility.Hidden) ? SearchBoxVisibility.Expanded : SearchBoxVisibility.Hidden;
-        }
     }
 
     class PaperSearchHandler : SearchHandler
@@ -41,9 +36,6 @@ namespace WhitePaperBible.Views
         {
             SearchBoxVisibility = SearchBoxVisibility.Expanded;
             ShowsResults = false;
-            //Placeholder = "Find a seashell...";
-            //this.QueryIcon = ImageSource.FromResource("search.png");
-
         }
 
         protected override void OnQueryChanged(string oldValue, string newValue)
@@ -64,6 +56,11 @@ namespace WhitePaperBible.Views
                 //    .ToList<Paper>();
                 //ItemsSource = results;
             }
+        }
+
+        protected override void OnItemSelected(object item)
+        {
+            base.OnItemSelected(item);
         }
     }
 }

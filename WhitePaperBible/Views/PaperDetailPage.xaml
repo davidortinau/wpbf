@@ -5,6 +5,8 @@
     xmlns:views="clr-namespace:WhitePaperBible.Views"
     xmlns:local="clr-namespace:WhitePaperBible"
     xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="False"
     x:Class="WhitePaperBible.Views.PaperDetailPage"
     Shell.TabBarIsVisible="false"
     >
@@ -13,12 +15,12 @@
         <vm:PaperDetailViewModel/>
     </ContentPage.BindingContext>
     
-    <Grid>
+    <Grid BackgroundColor="DarkRed">
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="*" />
             <RowDefinition
-                Height="60" />
+                Height="80" />
         </Grid.RowDefinitions>
         <views:WebView
             x:Name="ContentWebView"
