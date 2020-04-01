@@ -7,17 +7,22 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Windows.Input;
+using TinyMessenger;
 using WhitePaperBible.Core;
 using WhitePaperBible.Core.Models;
 using WhitePaperBible.Core.Services;
+using WhitePaperBible.ViewModels.Messages;
 using WhitePaperBible.Views;
 using Xamarin.Forms;
 
 namespace WhitePaperBible.ViewModels
 {
+    [QueryProperty(nameof(Refresh), "refresh")]
     public class FavoritesViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        TinyMessengerHub _hub;
 
         public ObservableCollection<Paper> Papers
         {
@@ -41,6 +46,14 @@ namespace WhitePaperBible.ViewModels
             }
         }
 
+        public bool Refresh
+        {
+            set
+            {
+                FetchPapers();
+            }
+        }
+
         public ICommand PaperSelectedCommand { get; set; }
 
         public ICommand RefreshCommand { get; set; }
@@ -51,11 +64,25 @@ namespace WhitePaperBible.ViewModels
 
         public FavoritesViewModel()
         {
+            _hub = DependencyService.Resolve<TinyMessengerHub>();
+            _hub.Subscribe<LoggedInMessage>(OnLoggedIn);
+            _hub.Subscribe<LoggedOutMessage>(OnLoggedOut);
+
             _client = DependencyService.Resolve<IJSONWebClient>();
             FetchPapers();
 
             PaperSelectedCommand = new Command(PaperSelected);
             RefreshCommand = new Command(FetchPapers);
+        }
+
+        private void OnLoggedOut(LoggedOutMessage obj)
+        {
+            Papers = new ObservableCollection<Paper>();
+        }
+
+        private void OnLoggedIn(LoggedInMessage obj)
+        {
+            FetchPapers();
         }
 
         private async void PaperSelected()
@@ -81,12 +108,30 @@ namespace WhitePaperBible.ViewModels
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(Papers)));
         }
 
+        public bool NeedsAuthentication
+        {
+            get
+            {
+                var AM = DependencyService.Resolve<AppModel>();
+                return !AM.IsLoggedIn;
+            }
+        }
+
+        public bool IsLoggedIn
+        {
+            get
+            {
+                var AM = DependencyService.Resolve<AppModel>();
+                return AM.IsLoggedIn;
+            }
+        }
+
         private async void FetchPapers()
         {
             var AM = DependencyService.Resolve<AppModel>();
             if (!AM.IsLoggedIn)
             {
-                await Shell.Current.Navigation.PushModalAsync(new LoginModalPage(), true);
+                await Shell.Current.GoToAsync("login");
             }
             else
             {
@@ -101,7 +146,6 @@ namespace WhitePaperBible.ViewModels
                 }
 
                 Barrel.Current.Add(key: nameof(AppModel), data: AM, expireIn: TimeSpan.FromDays(1));
-
 
                 Papers = new ObservableCollection<Paper>(AM.Favorites);
             }

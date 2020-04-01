@@ -1,27 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
-             xmlns:local="clr-namespace:WhitePaperBible"
-             x:Class="WhitePaperBible.Views.MyPapersPage"
-             Title="My Papers" 
-             >
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
+    xmlns:local="clr-namespace:WhitePaperBible"
+    xmlns:t="clr-namespace:WhitePaperBible.Views.Templates"
+    x:Class="WhitePaperBible.Views.MyPapersPage"
+    Title="My Papers">
 
     <ContentPage.BindingContext>
-        <vm:MyPapersViewModel/>
+        <vm:MyPapersViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add"                     
-                     Command="{Binding AddPaperCommand}">
+        <ToolbarItem Text="Logout" Command="{Binding LogoutCommand}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource 
+                <FontImageSource
                     FontFamily="{StaticResource FontAwesome}"
                     Color="#444444"
-                    Glyph="{x:Static local:IconFont.PlusSquare}"/>
+                    Size="16"
+                    Glyph="{x:Static local:IconFont.DoorOpen}" />
             </ToolbarItem.IconImageSource>
-            
+        </ToolbarItem>
+        <ToolbarItem
+            Text="Add"
+            Command="{Binding AddPaperCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="{StaticResource FontAwesome}"
+                    Color="#444444"
+                    Size="16"
+                    Glyph="{x:Static local:IconFont.Plus}" />
+            </ToolbarItem.IconImageSource>
+
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    
+
+    <CollectionView
+        x:Name="cv"
+        ItemsSource="{Binding Papers}">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout
+                Orientation="Vertical"
+                HorizontalItemSpacing="10"
+                VerticalItemSpacing="0"
+                Span="1" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.EmptyView>
+            <Grid>
+                <StackLayout
+                    VerticalOptions="Center">
+                    <Label
+                        IsVisible="{Binding IsLoggedIn}"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Loading Papers" />
+                    <Button
+                        Text="Please Login"
+                        IsVisible="{Binding NeedsAuthentication}"
+                        TextColor="Blue"
+                        Command="{Binding RefreshCommand}" />
+                    <Button Text="Load Papers"
+                            TextColor="Blue"
+                            Command="{Binding RefreshCommand}"/>
+                </StackLayout>
+            </Grid>
+        </CollectionView.EmptyView>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <t:PaperItemTemplate
+                    Padding="10">
+                    <t:PaperItemTemplate.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding PaperSelectedCommand,
+                                Source={RelativeSource AncestorType={x:Type vm:PapersViewModel}}}"
+                            CommandParameter="{Binding .}" />
+                    </t:PaperItemTemplate.GestureRecognizers>
+                </t:PaperItemTemplate>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
 </ContentPage>

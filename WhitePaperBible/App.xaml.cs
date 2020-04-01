@@ -1,6 +1,7 @@
 ﻿using MonkeyCache.SQLite;
 using System;
 using System.Threading.Tasks;
+using TinyMessenger;
 using WhitePaperBible.Core.Models;
 using Xamarin.Forms;
 
@@ -11,11 +12,14 @@ namespace WhitePaperBible
 
         public App()
         {
+            Device.SetFlags(new string[] { "SwipeView_Experimental" });
+
             InitializeComponent();
 
             Barrel.ApplicationId = "com.simplyprofound.whitepaperbible";
 
             DependencyService.Register<AppModel>();
+            DependencyService.Register<TinyMessengerHub>();
 
             InitUser();
 

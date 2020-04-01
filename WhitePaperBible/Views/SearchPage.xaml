@@ -1,8 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="WhitePaperBible.Views.SearchPage"
-             Title="Search">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
+    x:Class="WhitePaperBible.Views.SearchPage"
+    Title="Search">
+    <ContentPage.BindingContext>
+        <vm:SearchViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <SearchBar
+            Placeholder="Col 2:6, Hope, For God so loved..."
+            Text="{Binding SearchTerms}"
+            SearchCommand="{Binding DoSearchCommand}" />
+        <StackLayout
+            Padding="15,0"
+            Orientation="Horizontal">
+            <RadioButton
+                Command="{Binding ChangeScopeCommand}"
+                CommandParameter="reference"
+                IsChecked="True"
+                Text="By Reference"
+                GroupName="Scope" />
+            <RadioButton
+                Command="{Binding ChangeScopeCommand}"
+                CommandParameter="keyword"
+                Text="By Keyword"
+                GroupName="Scope" />
+            <RadioButton
+                Command="{Binding ChangeScopeCommand}"
+                CommandParameter="phrase"
+                Text="By Phrase"
+                GroupName="Scope" />
+        </StackLayout>
+        <CollectionView
+            ItemsSource="{Binding Results}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItem Text="Add"
+                                       BackgroundColor="Aqua"
+                                       IconImageSource="{StaticResource IconAdd}"/>
+                        </SwipeView.LeftItems>
+                        <Grid
+                            Padding="15,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1"/>
+                            </Grid.RowDefinitions>
+                            <Label 
+                                FontSize="Subtitle"
+                                   VerticalOptions="Start"
+                                Text="{Binding reference.reference}" />
+                            <Label 
+                                Grid.Row="1"
+                                FontSize="Body"
+                                Text="{Binding reference.content}"
+                                TextType="Text" />
+                            <BoxView Grid.Row="2" BackgroundColor="#d1d1d1"/>
+                        </Grid>
+
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
 </ContentPage>

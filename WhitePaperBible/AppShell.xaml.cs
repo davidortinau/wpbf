@@ -12,6 +12,7 @@ namespace WhitePaperBible
 			InitializeComponent();
 
 			Routing.RegisterRoute("paper", typeof(PaperDetailPage));
+			Routing.RegisterRoute("login", typeof(LoginModalPage));
 		}
 
 		void Handle_Navigating(object sender, Xamarin.Forms.ShellNavigatingEventArgs e)

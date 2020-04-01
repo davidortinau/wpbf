@@ -1,20 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converters="clr-namespace:WhitePaperBible.Converters"
-             x:Class="WhitePaperBible.App">
+<Application
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WhitePaperBible"
+    xmlns:converters="clr-namespace:WhitePaperBible.Converters"
+    x:Class="WhitePaperBible.App">
     <Application.Resources>
-        <OnPlatform x:Key="FontAwesome"
-                    x:TypeArguments="x:String"
-                    Android="fa-solid-900.ttf#Font Awesome 5 Free"
-                    iOS="Font Awesome 5 Free" />
+        <OnPlatform
+            x:Key="FontAwesome"
+            x:TypeArguments="x:String"
+            Android="fa-solid-900.ttf#Font Awesome 5 Free"
+            iOS="Font Awesome 5 Free" />
 
-        <Style x:Key="FontAwesomeLabel"
-               TargetType="Label">
-            <Setter Property="FontFamily"
-                    Value="{StaticResource FontAwesome}" />
+        <Style
+            x:Key="FontAwesomeLabel"
+            TargetType="Label">
+            <Setter
+                Property="FontFamily"
+                Value="{StaticResource FontAwesome}" />
         </Style>
 
-        <converters:BoolToColorConverter x:Key="BoolToColor"/>
+        <Style TargetType="RadioButton">
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="BorderColor" Value="Black"/>
+        </Style>
+
+        <FontImageSource
+            x:Key="IconAdd"
+            FontFamily="{StaticResource FontAwesome}"
+            Glyph="{x:Static local:IconFont.Plus}"
+            Size="24"
+            Color="Black" />
+
+        <converters:BoolToColorConverter
+            x:Key="BoolToColor" />
     </Application.Resources>
 </Application>

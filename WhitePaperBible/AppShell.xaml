@@ -52,79 +52,74 @@
                 BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
-    <TabBar>
-        <Tab Title="Papers"
+    
+        <Tab
+            Title="Papers"
             Route="papers">
             <Tab.Icon>
                 <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
-                    Glyph="{x:Static app:IconFont.StickyNote}"
-                    />
-            </Tab.Icon>
-        <ShellContent
-            
-            ContentTemplate="{DataTemplate local:PapersPage}" />
-        </Tab>
-        <Tab Title="Tags"
-            >
-            <Tab.Icon>
-                <FontImageSource
-                    Size="16"
-                    FontFamily="{StaticResource FontAwesome}"
-                    Glyph="{x:Static app:IconFont.Tags}"
-                    />
+                    Glyph="{x:Static app:IconFont.StickyNote}" />
             </Tab.Icon>
             <ShellContent
-            ContentTemplate="{DataTemplate local:TagsPage}" />
+                ContentTemplate="{DataTemplate local:PapersPage}" />
         </Tab>
-        <Tab Title="Favorites"
-            >
+        <Tab
+            Title="Tags">
             <Tab.Icon>
                 <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
-                    Glyph="{x:Static app:IconFont.Star}"
-                    />
-            </Tab.Icon>
-        <ShellContent
-            ContentTemplate="{DataTemplate local:FavoritesPage}" />
-        </Tab>
-        <Tab Title="Search"
-            >
-            <Tab.Icon>
-                <FontImageSource
-                    Size="16"
-                    FontFamily="{StaticResource FontAwesome}"
-                    Glyph="{x:Static app:IconFont.Search}"
-                    />
+                    Glyph="{x:Static app:IconFont.Tags}" />
             </Tab.Icon>
             <ShellContent
-            ContentTemplate="{DataTemplate local:SearchPage}" />
+                ContentTemplate="{DataTemplate local:TagsPage}" />
         </Tab>
-        <Tab Title="My Papers"
-            >
+        <Tab
+            Title="Favorites">
             <Tab.Icon>
                 <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
-                    Glyph="{x:Static app:IconFont.PersonBooth}"
-                    />
+                    Glyph="{x:Static app:IconFont.Star}" />
             </Tab.Icon>
             <ShellContent
-            ContentTemplate="{DataTemplate local:MyPapersPage}" />
+                ContentTemplate="{DataTemplate local:FavoritesPage}" />
         </Tab>
-        <Tab Title="About"
-            >
+        <Tab
+            Title="Search">
             <Tab.Icon>
                 <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
-                    Glyph="{x:Static app:IconFont.Lightbulb}"
-                    />
+                    Glyph="{x:Static app:IconFont.Search}" />
             </Tab.Icon>
             <ShellContent
-            ContentTemplate="{DataTemplate local:AboutPage}" />
+                ContentTemplate="{DataTemplate local:SearchPage}" />
         </Tab>
-    </TabBar>
+        <Tab
+            Title="My Papers">
+            <Tab.Icon>
+                <FontImageSource
+                    Size="16"
+                    FontFamily="{StaticResource FontAwesome}"
+                    Glyph="{x:Static app:IconFont.PersonBooth}" />
+            </Tab.Icon>
+            <ShellContent
+                ContentTemplate="{DataTemplate local:MyPapersPage}" />
+        </Tab>
+        <Tab
+            Title="About">
+            <Tab.Icon>
+                <FontImageSource
+                    Size="16"
+                    FontFamily="{StaticResource FontAwesome}"
+                    Glyph="{x:Static app:IconFont.Lightbulb}" />
+            </Tab.Icon>
+            <ShellContent
+                ContentTemplate="{DataTemplate local:AboutPage}" />
+        </Tab>
+
+
 </Shell>
