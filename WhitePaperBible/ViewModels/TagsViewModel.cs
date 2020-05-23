@@ -41,7 +41,7 @@ namespace WhitePaperBible.ViewModels
             }
         }
 
-        public ICommand SelectedCommand { get; set; }
+        public Command<Tag> SelectedCommand { get; set; }
 
         public Tag Selected { get; set; }
 
@@ -52,14 +52,15 @@ namespace WhitePaperBible.ViewModels
             _client = DependencyService.Resolve<IJSONWebClient>();
             Fetch();
 
-            SelectedCommand = new Command(TagSelected);
+            SelectedCommand = new Command<Tag>(TagSelected);
         }
 
-        private async void TagSelected()
+        private async void TagSelected(Tag t)
         {
             var AM = DependencyService.Resolve<AppModel>();
-            AM.CurrentTag = Selected;
-            await Shell.Current.Navigation.PushAsync(new TagPapersPage());
+            AM.CurrentTag = t;
+            //await Shell.Current.Navigation.PushAsync(new TagPapersPage());
+            await Shell.Current.GoToAsync($"tag/papers?id={t.id}");
 
         }
 

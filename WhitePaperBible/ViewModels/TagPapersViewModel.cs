@@ -40,7 +40,7 @@ namespace WhitePaperBible.ViewModels
             }
         }
 
-        public ICommand SelectedCommand { get; set; }
+        public Command<Paper> SelectedCommand { get; set; }
 
         public Paper Selected { get; set; }
 
@@ -51,14 +51,14 @@ namespace WhitePaperBible.ViewModels
             _client = DependencyService.Resolve<IJSONWebClient>();
             Fetch();
 
-            SelectedCommand = new Command(PaperSelected);
+            SelectedCommand = new Command<Paper>(PaperSelected);
         }
 
-        private async void PaperSelected()
+        private async void PaperSelected(Paper p)
         {
             var AM = DependencyService.Resolve<AppModel>();
-            AM.CurrentPaper = Selected;
-            await Shell.Current.GoToAsync($"paper?id={Selected.id}");
+            AM.CurrentPaper = p;
+            await Shell.Current.GoToAsync($"paper?id={p.id}");
 
             Selected = null;
 

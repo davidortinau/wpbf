@@ -17,9 +17,6 @@
     <CollectionView 
         x:Name="cv"
         ItemsSource="{Binding Papers}" 
-        SelectedItem="{Binding Selected, Mode=OneWayToSource}"
-        SelectionMode="Single"
-        SelectionChangedCommand="{Binding SelectedCommand}"
         >
         <CollectionView.ItemsLayout>
             <GridItemsLayout 
@@ -66,6 +63,15 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <ContentView Padding="10">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding 
+                                    Source={RelativeSource 
+                                    AncestorType={x:Type vm:TagPapersViewModel}}, 
+                                    Path=SelectedCommand}"
+                            CommandParameter="{Binding .}"
+                            />
+                    </ContentView.GestureRecognizers>
                     <StackLayout>
                         <Label FontSize="18" 
                                TextColor="#2f2f2f" 

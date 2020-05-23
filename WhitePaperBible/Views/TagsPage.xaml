@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
              mc:Ignorable="d"
              x:Class="WhitePaperBible.Views.TagsPage"
              Title="Tags">
@@ -10,9 +11,6 @@
     <CollectionView 
         x:Name="cv"
         ItemsSource="{Binding Tags}" 
-        SelectedItem="{Binding Selected, Mode=OneWayToSource}"
-        SelectionMode="Single"
-        SelectionChangedCommand="{Binding SelectedCommand}"
         >
         <CollectionView.ItemsLayout>
             <GridItemsLayout 
@@ -59,6 +57,15 @@
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <ContentView Padding="10">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding 
+                                    Source={RelativeSource 
+                                    AncestorType={x:Type vm:TagsViewModel}}, 
+                                    Path=SelectedCommand}"
+                            CommandParameter="{Binding .}"
+                            />
+                    </ContentView.GestureRecognizers>
                     <Grid>
                         <Label FontSize="18" 
                                TextColor="#2f2f2f" d:Text="{Binding .}" 

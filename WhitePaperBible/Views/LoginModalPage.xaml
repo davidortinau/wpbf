@@ -36,6 +36,7 @@
             button {
                 background-color: #1F7A8C;
                 margin: 25 20 0;
+                height: 60;
             }
 
             .Valid {
@@ -100,7 +101,9 @@
                             Command="{Binding LoginCommand}"/>
                     <Button Text="Cancel" 
                             Margin="10"
+                            TextColor="White"
                             BackgroundColor="Transparent" 
+                            Visual="Default"
                             Command="{Binding CloseModalCommand}"/>
                 </FlexLayout>
             </Frame>
