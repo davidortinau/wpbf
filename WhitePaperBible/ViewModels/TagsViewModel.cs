@@ -59,7 +59,6 @@ namespace WhitePaperBible.ViewModels
         {
             var AM = DependencyService.Resolve<AppModel>();
             AM.CurrentTag = t;
-            //await Shell.Current.Navigation.PushAsync(new TagPapersPage());
             await Shell.Current.GoToAsync($"tag/papers?id={t.id}");
 
         }

@@ -32,6 +32,11 @@ namespace WhitePaperBible.Views
                 (BindingContext as PapersViewModel).FilterPapers(e.NewTextValue);
             }
         }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            SearchBar.IsVisible = !SearchBar.IsVisible;
+        }
     }
 
     class PaperSearchHandler : SearchHandler

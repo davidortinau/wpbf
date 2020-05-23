@@ -16,10 +16,7 @@
     </ContentPage.ToolbarItems>
 
     <CollectionView
-        ItemsSource="{Binding Papers}"
-        SelectedItem="{Binding SelectedPaper, Mode=TwoWay}"
-        SelectionMode="Single"
-        SelectionChangedCommand="{Binding PaperSelectedCommand}">
+        ItemsSource="{Binding Papers}">
         <CollectionView.ItemsLayout>
             <GridItemsLayout
                 Orientation="Vertical"
@@ -45,6 +42,15 @@
             <DataTemplate>
                 <ContentView
                     Padding="10">
+                    <ContentView.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding 
+                                    Source={RelativeSource 
+                                    AncestorType={x:Type vm:FavoritesViewModel}}, 
+                                    Path=PaperSelectedCommand}"
+                            CommandParameter="{Binding .}"
+                            />
+                    </ContentView.GestureRecognizers>
                     <Frame
                         HasShadow="false"
                         BackgroundColor="#f1f1f1"

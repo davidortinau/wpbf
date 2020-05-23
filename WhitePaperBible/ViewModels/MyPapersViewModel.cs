@@ -93,12 +93,12 @@ namespace WhitePaperBible.ViewModels
             FetchPapers();
         }
 
-        void Logout()
+        async void Logout()
         {
             var AM = DependencyService.Resolve<AppModel>();
             AM.ClearCredentials();
             _hub.PublishAsync <LoggedOutMessage>(new LoggedOutMessage());
-            Shell.Current.GoToAsync("papers");
+            await Shell.Current.GoToAsync("///papers");
         }
 
         private void OnAdd()
@@ -112,7 +112,6 @@ namespace WhitePaperBible.ViewModels
             {
                 var AM = DependencyService.Resolve<AppModel>(); 
                 AM.CurrentPaper = SelectedPaper;
-                //await App.NavigateToAsync(new PaperDetailPage() { ID = SelectedPaper.id.ToString() });
                 await Shell.Current.GoToAsync($"paper?id={SelectedPaper.id}");
 
                 SelectedPaper = null;

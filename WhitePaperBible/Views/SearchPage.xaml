@@ -50,6 +50,7 @@
                                        IconImageSource="{StaticResource IconAdd}"/>
                         </SwipeView.LeftItems>
                         <Grid
+                            BackgroundColor="White"
                             Padding="15,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>

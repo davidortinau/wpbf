@@ -12,7 +12,7 @@ namespace WhitePaperBible
 
         public App()
         {
-            Device.SetFlags(new string[] { "SwipeView_Experimental" });
+            Device.SetFlags(new string[] { "SwipeView_Experimental", "RadioButton_Experimental", "AppTheme_Experimental" });
 
             InitializeComponent();
 

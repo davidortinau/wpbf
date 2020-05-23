@@ -23,6 +23,7 @@
         <Style TargetType="RadioButton">
             <Setter Property="TextColor" Value="Black"/>
             <Setter Property="BorderColor" Value="Black"/>
+            <Setter Property="BackgroundColor" Value="Transparent"/>
         </Style>
 
         <FontImageSource
@@ -30,6 +31,13 @@
             FontFamily="{StaticResource FontAwesome}"
             Glyph="{x:Static local:IconFont.Plus}"
             Size="24"
+            Color="Black" />
+
+        <FontImageSource
+            x:Key="IconSearch"
+            FontFamily="{StaticResource FontAwesome}"
+            Glyph="{x:Static local:IconFont.Search}"
+            Size="18"
             Color="Black" />
 
         <converters:BoolToColorConverter

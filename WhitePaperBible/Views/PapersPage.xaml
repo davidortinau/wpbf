@@ -9,11 +9,17 @@
     mc:Ignorable="d"
     x:Class="WhitePaperBible.Views.PapersPage"
     Title="Papers">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="{StaticResource IconSearch}" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    
     <StackLayout>
-        <SearchBar TextChanged="SearchBar_TextChanged" />
+        <SearchBar x:Name="SearchBar" TextChanged="SearchBar_TextChanged" IsVisible="False" />
 
         <CollectionView
             x:Name="cv"
+            Margin="0,15,0,0"
             ItemsSource="{Binding Papers}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout

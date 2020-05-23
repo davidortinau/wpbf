@@ -46,7 +46,10 @@ namespace WhitePaperBible.ViewModels
             }
         }
 
-        public bool Refresh
+        /// <summary>
+        /// Anything set here will prompt a refresh.
+        /// </summary>
+        public string Refresh
         {
             set
             {
@@ -54,9 +57,9 @@ namespace WhitePaperBible.ViewModels
             }
         }
 
-        public ICommand PaperSelectedCommand { get; set; }
+        public Command<Paper> PaperSelectedCommand { get; set; }
 
-        public ICommand RefreshCommand { get; set; }
+        public Command RefreshCommand { get; set; }
 
         public Paper SelectedPaper { get; set; }
 
@@ -71,7 +74,7 @@ namespace WhitePaperBible.ViewModels
             _client = DependencyService.Resolve<IJSONWebClient>();
             FetchPapers();
 
-            PaperSelectedCommand = new Command(PaperSelected);
+            PaperSelectedCommand = new Command<Paper>(PaperSelected);
             RefreshCommand = new Command(FetchPapers);
         }
 
@@ -85,18 +88,11 @@ namespace WhitePaperBible.ViewModels
             FetchPapers();
         }
 
-        private async void PaperSelected()
+        private async void PaperSelected(Paper p)
         {
-            if (SelectedPaper != null)
-            {
-                var AM = DependencyService.Resolve<AppModel>();
-                AM.CurrentPaper = SelectedPaper;
-                //await App.NavigateToAsync(new PaperDetailPage() { ID = SelectedPaper.id.ToString() });
-                await Shell.Current.GoToAsync($"paper?id={SelectedPaper.id}");
-
-                SelectedPaper = null;
-            }
-
+            var AM = DependencyService.Resolve<AppModel>();
+            AM.CurrentPaper = p;
+            await Shell.Current.GoToAsync($"paper?id={p.id}");            
         }
 
         string _keywords = string.Empty;
