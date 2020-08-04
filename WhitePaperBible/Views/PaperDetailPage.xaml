@@ -34,9 +34,9 @@
                     Html="{Binding HtmlContent}" />
             </views:WebView.Source>
         </views:WebView>
+
         <BoxView Color="#4B000000" Opacity="0"
-                 x:Name="Backdrop"
-                 >
+                 x:Name="Backdrop">
             <BoxView.GestureRecognizers>
                 <TapGestureRecognizer
                     Tapped="TapGestureRecognizer_Tapped"/>

@@ -72,12 +72,43 @@ namespace WhitePaperBible.Views
 
         async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
         {
-            await Backdrop.FadeTo(0, length: duration);
-            await BottomToolbar.TranslateTo(0, 220, length: duration, easing: Easing.SinIn);
+            if (isBackdropTapEnabled)
+            {
+                await Backdrop.FadeTo(0, length: duration);
+                await BottomToolbar.TranslateTo(0, 220, length: duration, easing: Easing.SinIn);
+            }
         }
 
-        void PanGestureRecognizer_PanUpdated(System.Object sender, Xamarin.Forms.PanUpdatedEventArgs e)
+        double lastPanY = 0;
+        bool isBackdropTapEnabled = true;
+        async void PanGestureRecognizer_PanUpdated(System.Object sender, Xamarin.Forms.PanUpdatedEventArgs e)
         {
+            if(e.StatusType == GestureStatus.Running)
+            {
+                isBackdropTapEnabled = false;
+                lastPanY = e.TotalY;
+                Debug.WriteLine($"R: {e.TotalY}");
+                if (e.TotalY > 0)
+                {
+                    BottomToolbar.TranslationY = e.TotalY;
+                }
+                
+            }
+            else if(e.StatusType == GestureStatus.Completed)
+            {
+                Debug.WriteLine($"Completed: {e.TotalY}");
+                if(lastPanY < 110)
+                {
+                    await BottomToolbar.TranslateTo(0, 0, length: duration, easing: Easing.SinIn);
+                }
+                else
+                {
+                    await Backdrop.FadeTo(0, length: duration);
+                    await BottomToolbar.TranslateTo(0, 220, length: duration, easing: Easing.SinIn);
+                }
+                isBackdropTapEnabled = true;
+                //lastPanY = 0;
+            }
         }
     }
 }
