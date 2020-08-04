@@ -14,53 +14,74 @@
     <ContentPage.BindingContext>
         <vm:PaperDetailViewModel/>
     </ContentPage.BindingContext>
-    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="{StaticResource IconOptions}"
+                     Clicked="ToolbarItem_Clicked"
+                     />
+    </ContentPage.ToolbarItems>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="*" />
-            <RowDefinition
-                Height="80" />
         </Grid.RowDefinitions>
         <views:WebView
             x:Name="ContentWebView"
-            Grid.RowSpan="2"
             Scrolled="Handle_Scrolled">
             <views:WebView.Source>
                 <HtmlWebViewSource
                     Html="{Binding HtmlContent}" />
             </views:WebView.Source>
         </views:WebView>
-        <FlexLayout
+        <BoxView Color="#4B000000" Opacity="0"
+                 x:Name="Backdrop"
+                 >
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer
+                    Tapped="TapGestureRecognizer_Tapped"/>
+            </BoxView.GestureRecognizers>
+
+        </BoxView>
+
+
+
+        <Frame
             x:Name="BottomToolbar"
-            Grid.Row="1"
-            JustifyContent="SpaceEvenly"
-            BackgroundColor="#f2f2f2"
+            HeightRequest="200"
+            VerticalOptions="End"
+            BackgroundColor="#FFFFFF"
+            Visual="Material"
+            CornerRadius="20"
+            TranslationY="220"
             Padding="15,6">
-            <ImageButton
-                FlexLayout.AlignSelf="Center"
-                BackgroundColor="transparent"
-                Command="{Binding ToggleFavoriteCommand}">
-                <ImageButton.Source>
-                    <FontImageSource
-                        FontFamily="{StaticResource FontAwesome}"
-                        Color="{Binding IsFavorite, Converter={StaticResource BoolToColor}, ConverterParameter='#CC0000;#666666'}"
-                        Glyph="{x:Static local:IconFont.Star}"
-                        />
-                </ImageButton.Source>
-            </ImageButton>
-            <ImageButton
-                FlexLayout.AlignSelf="Center"
-                BackgroundColor="transparent"
-                Command="{Binding ShareCommand}">
-                <ImageButton.Source>
-                    <FontImageSource
-                        FontFamily="{StaticResource FontAwesome}"
-                        Color="#666666"
-                        Glyph="{x:Static local:IconFont.ShareSquare}"
-                        />
-                </ImageButton.Source>
-            </ImageButton>
-        </FlexLayout>
+            <Frame.GestureRecognizers>
+                <PanGestureRecognizer PanUpdated="PanGestureRecognizer_PanUpdated"
+                    />
+            </Frame.GestureRecognizers>
+            <StackLayout Orientation="Vertical" Padding="0,4">
+                <BoxView CornerRadius="2" HeightRequest="4" WidthRequest="40"
+                         BackgroundColor="{StaticResource LightGray}"
+                         HorizontalOptions="Center"/>
+                <Label Text="Actions"
+                       HorizontalOptions="Center"
+                       FontSize="18"
+                       FontAttributes="Bold"/>
+                <TableView Intent="Settings"
+                   VerticalOptions="End"
+                   BackgroundColor="White"
+                   >
+                    <TableSection>
+                        <TextCell
+                            Text="{Binding IsFavorite, Converter={StaticResource BoolToColor}, ConverterParameter='Remove Favorite;Add Favorite'}"
+                            Command="{Binding ToggleFavoriteCommand}"/>
+                        <TextCell
+                    Text="Share"
+                    Command="{Binding ShareCommand}"/>
+                    </TableSection>
+                </TableView>
+            </StackLayout>
+
+        </Frame>
     </Grid>
 </ContentPage>

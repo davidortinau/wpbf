@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="MonkeyCache.SQLite" Version="1.5.0-beta" />
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.813-pre2" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1238-pre3" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.8" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
@@ -71,10 +71,5 @@
     <None Include="Repositories\DownloadService.cs" />
     <None Include="Repositories\FavoritesRepository.cs" />
     <None Include="Repositories\PaperRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Views\AddPaperPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>

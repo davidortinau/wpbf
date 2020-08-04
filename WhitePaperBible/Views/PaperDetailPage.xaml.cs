@@ -34,7 +34,7 @@ namespace WhitePaperBible.Views
             {
                 // hide the nav bar and toolbar
                 Shell.SetNavBarIsVisible(this, false);
-                BottomToolbar.IsVisible = false;
+                //BottomToolbar.IsVisible = false;
                 lastScrollY = ContentWebView.ScrollY;
             }
             else
@@ -43,12 +43,41 @@ namespace WhitePaperBible.Views
                 if ((lastScrollY - ContentWebView.ScrollY) > 100)
                 {
                     Shell.SetNavBarIsVisible(this, true);
-                    BottomToolbar.IsVisible = true;
+                    //BottomToolbar.IsVisible = true;
                     lastScrollY = ContentWebView.ScrollY;
                 }
             }
 
 
+        }
+
+
+        uint duration = 100;
+
+        async void ToolbarItem_Clicked(System.Object sender, System.EventArgs e)
+        {
+            
+
+            if (Backdrop.Opacity == 0)
+            {
+                await Backdrop.FadeTo(1, length:duration);
+                await BottomToolbar.TranslateTo(0, 0, length: duration, easing:Easing.SinIn);
+            }
+            else
+            {
+                await Backdrop.FadeTo(0, length: duration);
+                await BottomToolbar.TranslateTo(0, 220, length: duration,easing:Easing.SinIn);
+            }
+        }
+
+        async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+        {
+            await Backdrop.FadeTo(0, length: duration);
+            await BottomToolbar.TranslateTo(0, 220, length: duration, easing: Easing.SinIn);
+        }
+
+        void PanGestureRecognizer_PanUpdated(System.Object sender, Xamarin.Forms.PanUpdatedEventArgs e)
+        {
         }
     }
 }

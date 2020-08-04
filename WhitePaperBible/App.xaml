@@ -26,6 +26,8 @@
             <Setter Property="BackgroundColor" Value="Transparent"/>
         </Style>
 
+        <Color x:Key="LightGray">#E5EBF1</Color>
+
         <FontImageSource
             x:Key="IconAdd"
             FontFamily="{StaticResource FontAwesome}"
@@ -37,6 +39,13 @@
             x:Key="IconSearch"
             FontFamily="{StaticResource FontAwesome}"
             Glyph="{x:Static local:IconFont.Search}"
+            Size="18"
+            Color="Black" />
+
+        <FontImageSource
+            x:Key="IconOptions"
+            FontFamily="{StaticResource FontAwesome}"
+            Glyph="{x:Static local:IconFont.EllipsisV}"
             Size="18"
             Color="Black" />
 
