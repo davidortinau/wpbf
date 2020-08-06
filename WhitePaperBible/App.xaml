@@ -6,6 +6,9 @@
     xmlns:converters="clr-namespace:WhitePaperBible.Converters"
     x:Class="WhitePaperBible.App">
     <Application.Resources>
+
+        <Color x:Key="PrimaryColor">#CC0000</Color>
+
         <OnPlatform
             x:Key="FontAwesome"
             x:TypeArguments="x:String"

@@ -3,7 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
-    xmlns:local="clr-namespace:WhitePaperBible"
+    xmlns:common="clr-namespace:WhitePaperBible"
     xmlns:t="clr-namespace:WhitePaperBible.Views.Templates"
     x:Class="WhitePaperBible.Views.MyPapersPage"
     Title="My Papers">
@@ -19,7 +19,7 @@
                     FontFamily="{StaticResource FontAwesome}"
                     Color="#444444"
                     Size="16"
-                    Glyph="{x:Static local:IconFont.DoorOpen}" />
+                    Glyph="{x:Static common:IconFont.DoorOpen}" />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
         <ToolbarItem
@@ -30,7 +30,7 @@
                     FontFamily="{StaticResource FontAwesome}"
                     Color="#444444"
                     Size="16"
-                    Glyph="{x:Static local:IconFont.Plus}" />
+                    Glyph="{x:Static common:IconFont.Plus}" />
             </ToolbarItem.IconImageSource>
 
         </ToolbarItem>
@@ -49,19 +49,32 @@
         <CollectionView.EmptyView>
             <Grid>
                 <StackLayout
+                    Spacing="20"
                     VerticalOptions="Center">
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="{StaticResource FontAwesome}"
+                                Glyph="{x:Static common:IconFont.PersonBooth}"
+                                Color="#1d1d1d"
+                                Size="82"
+                                />
+                        </Image.Source>
+                    </Image>
                     <Label
                         IsVisible="{Binding IsLoggedIn}"
                         HorizontalOptions="CenterAndExpand"
                         Text="Loading Papers" />
                     <Button
                         Text="Please Login"
+                        BackgroundColor="#CC0000"
+                        TextColor="White"
+                        Margin="30,0"
                         IsVisible="{Binding NeedsAuthentication}"
-                        TextColor="Blue"
                         Command="{Binding RefreshCommand}" />
-                    <Button Text="Load Papers"
+                    <!--<Button Text="Load Papers"
                             TextColor="Blue"
-                            Command="{Binding RefreshCommand}"/>
+                            Command="{Binding RefreshCommand}"/>-->
                 </StackLayout>
             </Grid>
         </CollectionView.EmptyView>

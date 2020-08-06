@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="MonkeyCache.SQLite" Version="1.5.0-beta" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1238-pre3" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.4061" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.8" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
@@ -29,6 +29,7 @@
     <Folder Include="Views\Templates\" />
     <Folder Include="Enums\" />
     <Folder Include="ViewModels\Messages\" />
+    <Folder Include="Views\Controls\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Services\AuthenticateUserService.cs" />
@@ -50,6 +51,7 @@
     <Compile Remove="Repositories\DownloadService.cs" />
     <Compile Remove="Repositories\FavoritesRepository.cs" />
     <Compile Remove="Repositories\PaperRepository.cs" />
+    <Compile Remove="Views\Controls\BottomDrawerContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Services\AuthenticateUserService.cs" />
@@ -71,5 +73,6 @@
     <None Include="Repositories\DownloadService.cs" />
     <None Include="Repositories\FavoritesRepository.cs" />
     <None Include="Repositories\PaperRepository.cs" />
+    <None Include="Views\Controls\BottomDrawerContainer.cs" />
   </ItemGroup>
 </Project>

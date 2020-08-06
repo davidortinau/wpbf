@@ -3,17 +3,18 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
+    xmlns:common="clr-namespace:WhitePaperBible"
     x:Class="WhitePaperBible.Views.FavoritesPage"
     Title="Favorites">
     <ContentPage.BindingContext>
         <vm:FavoritesViewModel />
     </ContentPage.BindingContext>
 
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem
             Text="Refresh"
             Command="{Binding RefreshCommand}" />
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
 
     <CollectionView
         ItemsSource="{Binding Papers}">
@@ -25,7 +26,18 @@
         <CollectionView.EmptyView>
             <Grid>
                 <StackLayout
+                    Spacing="20"
                     VerticalOptions="Center">
+                    <Image>
+                        <Image.Source>
+                            <FontImageSource
+                                FontFamily="{StaticResource FontAwesome}"
+                                Glyph="{x:Static common:IconFont.Star}"
+                                Color="#1d1d1d"
+                                Size="82"
+                                />
+                        </Image.Source>
+                    </Image>
                     <Label
                         IsVisible="{Binding IsLoggedIn}"
                         HorizontalOptions="CenterAndExpand"
@@ -33,7 +45,9 @@
                     <Button
                         Text="Please Login"
                         IsVisible="{Binding NeedsAuthentication}"
-                        TextColor="Blue"
+                        BackgroundColor="#CC0000"
+                        TextColor="White"
+                        Margin="30,0"
                         Command="{Binding RefreshCommand}" />
                 </StackLayout>
             </Grid>

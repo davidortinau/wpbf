@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
     Shell.PresentationMode="ModalAnimated"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.ModalPresentationStyle="PageSheet"
     x:Class="WhitePaperBible.Views.LoginModalPage">
 
     <ContentPage.BindingContext>
@@ -15,7 +17,7 @@
             <![CDATA[
 
             .container {
-                background-color: #0A2239;
+                background-color: transparent;
                 flex-direction: column;
             }
 
@@ -26,7 +28,7 @@
             .logo {
                 font-size: 20;
                 text-align: center;
-            color:white;
+                color:white;
             }
 
             entry {
@@ -56,22 +58,22 @@
     </ContentPage.Resources>
 
 
-    <ScrollView BackgroundColor="#053C5E">
-            <Grid Margin="15,0"
+    <ScrollView BackgroundColor="#f1f1f1">
+        <Grid Margin="15,0"
                   >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="100"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="100"/>
-                </Grid.RowDefinitions>
-
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
             <Frame Visual="Material"
                    HasShadow="True"
-                   BackgroundColor="#0A2239" 
-                        Grid.Row="1">
-            <FlexLayout 
-                class="container"
+                   CornerRadius="20"
+                   BackgroundColor="#FF1D1D1D" 
+                   Grid.Row="1">
+                <FlexLayout 
+                    class="container"
                 >
                     <Label Text="Login" StyleClass="logo"/>
                     <Entry x:Name="UserNameEntry" 
@@ -98,6 +100,7 @@
                     <BoxView FlexLayout.Basis="1" FlexLayout.Grow="1"/>
                     <Button Text="Log in" 
                             Visual="Material"
+                            BackgroundColor="{StaticResource PrimaryColor}"
                             Command="{Binding LoginCommand}"/>
                     <Button Text="Cancel" 
                             Margin="10"
@@ -108,7 +111,7 @@
                 </FlexLayout>
             </Frame>
         </Grid>
-        
+
     </ScrollView>
-        
+
 </ContentPage>

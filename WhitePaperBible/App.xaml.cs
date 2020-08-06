@@ -16,7 +16,7 @@ namespace WhitePaperBible
 
             InitializeComponent();
 
-            Barrel.ApplicationId = "com.simplyprofound.whitepaperbible";
+            Barrel.ApplicationId = "com.simplyprofound.whitepaperbible";            
 
             DependencyService.Register<AppModel>();
             DependencyService.Register<TinyMessengerHub>();
