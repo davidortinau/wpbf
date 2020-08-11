@@ -60,6 +60,7 @@
                 <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
+                    Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                     Glyph="{x:Static app:IconFont.PersonBooth}" />
             </Tab.Icon>
             <ShellContent
@@ -71,6 +72,7 @@
                 <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
+                    Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                     Glyph="{x:Static app:IconFont.Lightbulb}" />
             </Tab.Icon>
             <ShellContent

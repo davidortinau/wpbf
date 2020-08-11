@@ -33,7 +33,7 @@
                             <FontImageSource
                                 FontFamily="{StaticResource FontAwesome}"
                                 Glyph="{x:Static common:IconFont.Star}"
-                                Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralPrimary}}"
+                                Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                                 Size="82"
                                 />
                         </Image.Source>

@@ -43,14 +43,8 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <SwipeView>
-                        <SwipeView.LeftItems>
-                            <SwipeItem Text="Add"
-                                       BackgroundColor="Aqua"
-                                       IconImageSource="{StaticResource IconAdd}"/>
-                        </SwipeView.LeftItems>
+                    
                         <Grid
-                            BackgroundColor="White"
                             Padding="15,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -66,10 +60,9 @@
                                 FontSize="Body"
                                 Text="{Binding reference.content}"
                                 TextType="Text" />
-                            <BoxView Grid.Row="2" BackgroundColor="#d1d1d1"/>
+                            <BoxView Grid.Row="2" BackgroundColor="#f3f3f3"/>
                         </Grid>
 
-                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -114,7 +114,7 @@
                     Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
         <Setter
                     Property="Shell.TabBarUnselectedColor"
-                    Value="#6f6f6f" />
+                    Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
         <Setter
                     Property="Shell.TabBarTitleColor"
                     Value="#CC0000" />

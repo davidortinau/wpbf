@@ -17,7 +17,7 @@
             <ToolbarItem.IconImageSource>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesome}"
-                    Color="#444444"
+                    Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                     Size="16"
                     Glyph="{x:Static common:IconFont.DoorOpen}" />
             </ToolbarItem.IconImageSource>
@@ -28,7 +28,7 @@
             <ToolbarItem.IconImageSource>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesome}"
-                    Color="#444444"
+                    Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                     Size="16"
                     Glyph="{x:Static common:IconFont.Plus}" />
             </ToolbarItem.IconImageSource>
@@ -56,7 +56,7 @@
                             <FontImageSource
                                 FontFamily="{StaticResource FontAwesome}"
                                 Glyph="{x:Static common:IconFont.PersonBooth}"
-                                Color="#1d1d1d"
+                                Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                                 Size="82"
                                 />
                         </Image.Source>

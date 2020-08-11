@@ -58,7 +58,7 @@
     </ContentPage.Resources>
 
 
-    <ScrollView BackgroundColor="#f1f1f1">
+    <ScrollView BackgroundColor="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}">
         <Grid Margin="15,0"
                   >
             <Grid.RowDefinitions>

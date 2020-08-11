@@ -25,12 +25,7 @@ namespace WhitePaperBible.ViewModels
         {
             get
             {
-                var AM = DependencyService.Resolve<AppModel>();
-                if (!AM.IsLoggedIn)
-                {
-                    Shell.Current.GoToAsync("login");
-                }
-                else if(_papers != null)
+                if (IsLoggedIn && _papers != null)
                 {
                     if (string.IsNullOrEmpty(_keywords))
                     {
@@ -149,24 +144,13 @@ namespace WhitePaperBible.ViewModels
 
         private async void FetchPapers()
         {
-            var AM = DependencyService.Resolve<AppModel>();
-            if (!AM.IsLoggedIn)
+            if (!IsLoggedIn)
             {
                 await Shell.Current.GoToAsync("login");
             }
             else
             {
-                //await _client.OpenURL(Constants.BASE_URI + "papers/?caller=wpb-iPhone", MethodEnum.GET, true);
-                //var papers = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PaperNode>>(_client.ResponseText);
-                
-                //AM.Papers = new List<Paper>();
-                //foreach (var node in papers)
-                //{
-                //    AM.Papers.Add(node.paper);
-                //}
-
-                //Barrel.Current.Add(key: nameof(AppModel), data: AM, expireIn: TimeSpan.FromDays(1));
-
+                var AM = DependencyService.Resolve<AppModel>();
                 Papers = new ObservableCollection<Paper>(AM.Papers.Where(x => x.Author.ID == AM.User.ID).ToList<Paper>());
             }
         }
