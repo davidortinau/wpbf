@@ -27,6 +27,7 @@
                 Height="*" />
         </Grid.RowDefinitions>
         <views:WebView
+            BackgroundColor="Transparent"
             x:Name="ContentWebView"
             Scrolled="Handle_Scrolled">
             <views:WebView.Source>

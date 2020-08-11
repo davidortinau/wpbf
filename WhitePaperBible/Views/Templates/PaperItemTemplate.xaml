@@ -6,8 +6,8 @@
     
     <Frame
         HasShadow="false"
-        BackgroundColor="#f1f1f1"
-        OutlineColor="#f2f2f2"
+        BackgroundColor="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource TabColor_Light}}"
+        
         Padding="15,8"
         CornerRadius="4">
         <StackLayout
@@ -15,11 +15,11 @@
             <Label
                 FontSize="15"
                 MaxLines="1"
-                TextColor="Black"
+                TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
                 Text="{Binding title}" />
             <Label
                 FontSize="11"
-                TextColor="Gray"
+                TextColor="{AppThemeBinding Dark={StaticResource TextSecondaryColor_Dark}, Light={StaticResource TextSecondaryColor_Light}}"
                 Text="{Binding Author.Name}" />
         </StackLayout>
     </Frame>

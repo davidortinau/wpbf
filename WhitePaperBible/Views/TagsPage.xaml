@@ -68,7 +68,7 @@
                     </ContentView.GestureRecognizers>
                     <Grid>
                         <Label FontSize="18" 
-                               TextColor="#2f2f2f" d:Text="{Binding .}" 
+                               d:Text="{Binding .}" 
                                Text="{Binding name}">
                             <Label.FormattedText>
                                 <FormattedString>

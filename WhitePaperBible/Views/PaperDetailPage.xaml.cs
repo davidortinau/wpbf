@@ -18,8 +18,8 @@ namespace WhitePaperBible.Views
         {
             base.OnAppearing();
             IsContentLoaded = true;
-        }
 
+        }
 
         double lastScrollY = 0;
         private bool IsContentLoaded;

@@ -2,57 +2,9 @@
 <Application
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:WhitePaperBible"
-    xmlns:converters="clr-namespace:WhitePaperBible.Converters"
     x:Class="WhitePaperBible.App">
     <Application.Resources>
-
-        <Color x:Key="PrimaryColor">#CC0000</Color>
-
-        <OnPlatform
-            x:Key="FontAwesome"
-            x:TypeArguments="x:String"
-            Android="fa-solid-900.ttf#Font Awesome 5 Free"
-            iOS="Font Awesome 5 Free" />
-
-        <Style
-            x:Key="FontAwesomeLabel"
-            TargetType="Label">
-            <Setter
-                Property="FontFamily"
-                Value="{StaticResource FontAwesome}" />
-        </Style>
-
-        <Style TargetType="RadioButton">
-            <Setter Property="TextColor" Value="Black"/>
-            <Setter Property="BorderColor" Value="Black"/>
-            <Setter Property="BackgroundColor" Value="Transparent"/>
-        </Style>
-
-        <Color x:Key="LightGray">#E5EBF1</Color>
-
-        <FontImageSource
-            x:Key="IconAdd"
-            FontFamily="{StaticResource FontAwesome}"
-            Glyph="{x:Static local:IconFont.Plus}"
-            Size="24"
-            Color="Black" />
-
-        <FontImageSource
-            x:Key="IconSearch"
-            FontFamily="{StaticResource FontAwesome}"
-            Glyph="{x:Static local:IconFont.Search}"
-            Size="18"
-            Color="Black" />
-
-        <FontImageSource
-            x:Key="IconOptions"
-            FontFamily="{StaticResource FontAwesome}"
-            Glyph="{x:Static local:IconFont.EllipsisV}"
-            Size="18"
-            Color="Black" />
-
-        <converters:BoolToColorConverter
-            x:Key="BoolToColor" />
+        <ResourceDictionary Source="Common\Styles.xaml"/>
+        
     </Application.Resources>
 </Application>

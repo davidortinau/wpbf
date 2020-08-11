@@ -3,6 +3,9 @@ using System.Runtime.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 using WhitePaperBible.Core.Helpers;
+using Xamarin.Forms;
+using System.Diagnostics;
+using WhitePaperBible.Common;
 
 namespace WhitePaperBible.Core.Models
 {
@@ -53,7 +56,7 @@ namespace WhitePaperBible.Core.Models
             set
             {
                 _references = value;
-                HtmlContent = generateHtmlContent();
+                //HtmlContent = generateHtmlContent();
             }
         }
 
@@ -62,7 +65,7 @@ namespace WhitePaperBible.Core.Models
         {
             get
             {
-                return _htmlContent;
+                return _htmlContent = generateHtmlContent();
             }
             set
             {
@@ -94,8 +97,20 @@ namespace WhitePaperBible.Core.Models
 
         private string generateHtmlContent()
         {
-            string html = @"<meta name='viewport' content='initial-scale=1.0' /><style type='text/css'>body { color: #000000; background-color: #FFFFFF; font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif; padding-bottom: 50px; } h1, h2, h3, h4, h5, h6 { padding: 0px; margin: 0px; font-style: normal; font-weight: normal; } h2 { font-family: 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; margin-bottom: -10px; padding-bottom: 0px; } h4 { font-size: 16px; } p { font-family: Helvetica, Verdana, Arial, sans-serif; line-height:1.5; font-size: 16px; } .esv-text { padding: 0 0 10px 0; } .description { border-radius: 5px; background-color:#F1F1F1; margin: 10px; padding: 8px; }</style>";
+            Color backgroundColor = (Color)App.Current.Resources["TabColor_Light"];
+            Color textColor = (Color)App.Current.Resources["TextPrimaryColor_Light"];
+            Color descriptionColor = (Color)App.Current.Resources["TabColor_Light"];
+            if (App.Current.RequestedTheme == Xamarin.Forms.OSAppTheme.Dark)
+            {
+                backgroundColor = (Color)App.Current.Resources["TabColor_Dark"];
+                textColor = (Color)App.Current.Resources["TextPrimaryColor_Dark"];
+                descriptionColor = (Color)App.Current.Resources["NeutralPrimary"];
+            }
+
+            string html = $"<meta name='viewport' content='initial-scale=1.0' /><style type='text/css'>body {{ color: {textColor.ToWebHex()}; background-color: {backgroundColor.ToWebHex()}; font-family: 'HelveticaNeue-Light', Helvetica, Arial, sans-serif; padding-bottom: 50px; }} h1, h2, h3, h4, h5, h6 {{ padding: 0px; margin: 0px; font-style: normal; font-weight: normal; }} h2 {{ font-family: 'HelveticaNeue', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: bold; margin-bottom: -10px; padding-bottom: 0px; }} h4 {{ font-size: 16px; }} p {{ font-family: Helvetica, Verdana, Arial, sans-serif; line-height:1.5; font-size: 16px; }} .esv-text {{ padding: 0 0 10px 0; }} .description {{ border-radius: 5px; background-color:{descriptionColor.ToWebHex()}; margin: 10px; padding: 8px; }}</style>";
             html += "<h1>" + title + "</h1>";
+
+            Debug.WriteLine(html);
 
             string author = (Author != null) ? Author.Name : "Anonymous";
 

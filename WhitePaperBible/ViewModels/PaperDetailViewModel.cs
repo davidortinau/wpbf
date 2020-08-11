@@ -52,6 +52,13 @@ namespace WhitePaperBible.ViewModels
 
             ToggleFavoriteCommand = new Command(ToggleFavorite);
             ShareCommand = new Command(async ()=> await OnShare());
+            App.Current.RequestedThemeChanged += Current_RequestedThemeChanged;
+        }
+
+        private void Current_RequestedThemeChanged(object sender, AppThemeChangedEventArgs e)
+        {
+            HtmlContent = DependencyService.Resolve<AppModel>().CurrentPaper.HtmlContent;
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(HtmlContent)));
         }
 
         private async Task OnShare()

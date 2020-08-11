@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WhitePaperBible"
+    xmlns:converters="clr-namespace:WhitePaperBible.Converters"
+    x:Class="WhitePaperBible.Common.Styles">
+
+    <!-- Colors -->
+    <Color x:Key="PrimaryColor">#CC0000</Color>
+    <Color x:Key="LightGray">#E5EBF1</Color>
+    <Color x:Key="DarkGray">#1d1d1d</Color>
+
+    <Color x:Key="ThemePrimary">#CC0000</Color>
+    <Color x:Key="ThemeLighterAlt">#fff7f5</Color>
+    <Color x:Key="ThemeLighter">#ffded6</Color>
+    <Color x:Key="ThemeTertiary">#ff8566</Color>
+    <Color x:Key="ThemeSecondary">#ff4b1f</Color>
+    <Color x:Key="ThemeDarkAlt">#e62e00</Color>
+    <Color x:Key="ThemeDark">#c22700</Color>
+    <Color x:Key="ThemeDarker">#8f1d00</Color>
+
+    <Color x:Key="NeutralLighterAlt">#f8f8f8</Color>
+    <Color x:Key="NeutralLighter">#f4f4f4</Color>
+    <Color x:Key="NeutralLight">#eaeaea</Color>
+    <Color x:Key="NeutralQuaternaryAlt">#dadada</Color>
+    <Color x:Key="NeutralQuaternary">#d0d0d0</Color>
+    <Color x:Key="NeutralTertiaryAlt">#c8c8c8</Color>
+    <Color x:Key="NeutralTertiary">#bab8b7</Color>
+    <Color x:Key="NeutralSecondaryAlt">#a3a2a0</Color>
+    <Color x:Key="NeutralSecondary">#a3a2a0</Color>
+    <Color x:Key="NeutralPrimaryAlt">#8d8b8a</Color>
+    <Color x:Key="NeutralPrimary">#323130</Color>
+    <Color x:Key="NeutralDark">#605e5d</Color>
+    <Color x:Key="Black">#494847</Color>
+    <Color x:Key="White">#ffffff</Color>
+
+    <!-- Theme Colors -->
+    <Color x:Key="BackgroundColorDark">#1d1d1d</Color>
+    <Color x:Key="BackgroundColorLight">#FFFFFF</Color>
+    <Color x:Key="TextPrimaryColor_Dark">#FFFFFF</Color>
+    <Color x:Key="TextPrimaryColor_Light">#323130</Color>
+    <Color x:Key="TextSecondaryColor_Dark">#FFFFFF</Color>
+    <Color x:Key="TextSecondaryColor_Light">#a3a2a0</Color>
+    <Color x:Key="TabColor_Dark">#1d1d1d</Color>
+    <Color x:Key="TabColor_Light">#f1f1f1</Color>
+
+    <!-- Semantic Colors -->
+    <Color x:Key="Success">#FF3300</Color>
+    <Color x:Key="Info">#ffded6</Color>
+    <Color x:Key="Warning">#ff4b1f</Color>
+
+    <Color x:Key="FlyoutGradientStart">#FF017ED8</Color>
+    <Color x:Key="FlyoutGradientEnd">#FF14D9D9</Color>
+    <Color x:Key="NavBarTitleColor">#FFFFFF</Color>
+
+    <Color x:Key="TitleColor">#FFFFFF</Color>
+
+
+    <!-- Fonts -->
+    <OnPlatform
+            x:Key="FontAwesome"
+            x:TypeArguments="x:String"
+            Android="fa-solid-900.ttf#Font Awesome 5 Free"
+            iOS="Font Awesome 5 Free" />
+
+    <!-- Icons -->
+
+    <FontImageSource
+            x:Key="IconAdd"
+            FontFamily="{StaticResource FontAwesome}"
+            Glyph="{x:Static local:IconFont.Plus}"
+            Size="24"
+            Color="Black" />
+
+    <FontImageSource
+            x:Key="IconSearch"
+            FontFamily="{StaticResource FontAwesome}"
+            Glyph="{x:Static local:IconFont.Search}"
+            Size="18"
+            Color="Black" />
+
+    <FontImageSource
+            x:Key="IconOptions"
+            FontFamily="{StaticResource FontAwesome}"
+            Glyph="{x:Static local:IconFont.EllipsisV}"
+            Size="18"
+            Color="Black" />
+
+    <!-- Shell -->
+    <Style
+                x:Key="BaseStyle"
+                TargetType="Element">
+        <Setter
+                    Property="Shell.BackgroundColor"
+                    Value="{AppThemeBinding Dark={StaticResource TabColor_Dark}, Light={StaticResource TabColor_Light}}" />
+        <Setter
+                    Property="Shell.ForegroundColor"
+                    Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+        <Setter
+                    Property="Shell.TitleColor"
+                    Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+        <Setter
+                    Property="Shell.DisabledColor"
+                    Value="#B4FFFFFF" />
+        <Setter
+                    Property="Shell.UnselectedColor"
+                    Value="#95FFFFFF" />
+        <Setter
+                    Property="Shell.TabBarBackgroundColor"
+                    Value="{AppThemeBinding Dark={StaticResource TabColor_Dark}, Light={StaticResource TabColor_Light}}" />
+        <Setter
+                    Property="Shell.TabBarForegroundColor"
+                    Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+        <Setter
+                    Property="Shell.TabBarUnselectedColor"
+                    Value="#6f6f6f" />
+        <Setter
+                    Property="Shell.TabBarTitleColor"
+                    Value="#CC0000" />
+    </Style>
+    <Style
+                TargetType="ShellItem"
+                ApplyToDerivedTypes="true"
+                BasedOn="{StaticResource BaseStyle}" />
+
+    <!-- Controls -->
+    <Style TargetType="Page" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"/>
+    </Style>
+
+    <Style
+            x:Key="FontAwesomeLabel"
+            TargetType="Label">
+        <Setter
+                Property="FontFamily"
+                Value="{StaticResource FontAwesome}" />
+    </Style>
+
+    <Style TargetType="RadioButton">
+        <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"/>
+        <Setter Property="BorderColor" Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"/>
+    </Style>
+
+    <!-- Converters -->
+    <converters:BoolToColorConverter
+        x:Key="BoolToColor" />
+</ResourceDictionary>
