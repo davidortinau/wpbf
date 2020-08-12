@@ -4,80 +4,83 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:WhitePaperBible.Views"
     xmlns:app="clr-namespace:WhitePaperBible"
-    FlyoutBehavior="Disabled"
+    FlyoutBehavior="Flyout"
     Title="WhitePaperBible"
     x:Class="WhitePaperBible.AppShell"
     Navigating="Handle_Navigating">
-    
-        <Tab
-            Title="Papers"
-            Route="papers">
-            <Tab.Icon>
-                <FontImageSource
+
+    <FlyoutItem Title="Papers" Route="papers">
+        <FlyoutItem.Icon>
+            <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
                     Glyph="{x:Static app:IconFont.StickyNote}" />
-            </Tab.Icon>
+        </FlyoutItem.Icon>
+        <ShellSection>
             <ShellContent
                 ContentTemplate="{DataTemplate local:PapersPage}" />
-        </Tab>
-        <Tab
-            Title="Tags">
-            <Tab.Icon>
-                <FontImageSource
+        </ShellSection>
+    </FlyoutItem>
+    <FlyoutItem Title="Tags">
+        <FlyoutItem.Icon>
+            <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
                     Glyph="{x:Static app:IconFont.Tags}" />
-            </Tab.Icon>
+        </FlyoutItem.Icon>
+        <ShellSection>
             <ShellContent
                 ContentTemplate="{DataTemplate local:TagsPage}" />
-        </Tab>
-        <Tab
-            Title="Favorites">
-            <Tab.Icon>
-                <FontImageSource
+        </ShellSection>
+    </FlyoutItem>
+    <FlyoutItem Title="Favorites">
+        <FlyoutItem.Icon>
+            <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
                     Glyph="{x:Static app:IconFont.Star}" />
-            </Tab.Icon>
+        </FlyoutItem.Icon>
+        <ShellSection>
             <ShellContent
                 ContentTemplate="{DataTemplate local:FavoritesPage}" />
-        </Tab>
-        <Tab
-            Title="Search">
-            <Tab.Icon>
-                <FontImageSource
+        </ShellSection>
+    </FlyoutItem>
+    <FlyoutItem Title="Search">
+        <FlyoutItem.Icon>
+            <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
                     Glyph="{x:Static app:IconFont.Search}" />
-            </Tab.Icon>
+        </FlyoutItem.Icon>
+        <ShellSection>
             <ShellContent
                 ContentTemplate="{DataTemplate local:SearchPage}" />
-        </Tab>
-        <Tab
-            Title="My Papers">
-            <Tab.Icon>
-                <FontImageSource
+        </ShellSection>
+    </FlyoutItem>
+    <FlyoutItem Title="My Papers">
+        <FlyoutItem.Icon>
+            <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
-                    Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                     Glyph="{x:Static app:IconFont.PersonBooth}" />
-            </Tab.Icon>
+        </FlyoutItem.Icon>
+        <ShellSection>
+
             <ShellContent
                 ContentTemplate="{DataTemplate local:MyPapersPage}" />
-        </Tab>
-        <Tab
-            Title="About">
-            <Tab.Icon>
-                <FontImageSource
+        </ShellSection>
+    </FlyoutItem>
+    <FlyoutItem Title="About">
+        <FlyoutItem.Icon>
+            <FontImageSource
                     Size="16"
                     FontFamily="{StaticResource FontAwesome}"
-                    Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                     Glyph="{x:Static app:IconFont.Lightbulb}" />
-            </Tab.Icon>
+        </FlyoutItem.Icon>
+        <ShellSection>
             <ShellContent
                 ContentTemplate="{DataTemplate local:AboutPage}" />
-        </Tab>
-
+        </ShellSection>
+    </FlyoutItem>
 
 </Shell>

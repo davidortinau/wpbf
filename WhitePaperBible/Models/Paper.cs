@@ -97,12 +97,12 @@ namespace WhitePaperBible.Core.Models
 
         private string generateHtmlContent()
         {
-            Color backgroundColor = (Color)App.Current.Resources["TabColor_Light"];
+            Color backgroundColor = (Color)App.Current.Resources["BackgroundColorLight"];
             Color textColor = (Color)App.Current.Resources["TextPrimaryColor_Light"];
             Color descriptionColor = (Color)App.Current.Resources["TabColor_Light"];
             if (App.Current.RequestedTheme == Xamarin.Forms.OSAppTheme.Dark)
             {
-                backgroundColor = (Color)App.Current.Resources["TabColor_Dark"];
+                backgroundColor = (Color)App.Current.Resources["BackgroundColorDark"];
                 textColor = (Color)App.Current.Resources["TextPrimaryColor_Dark"];
                 descriptionColor = (Color)App.Current.Resources["NeutralPrimary"];
             }

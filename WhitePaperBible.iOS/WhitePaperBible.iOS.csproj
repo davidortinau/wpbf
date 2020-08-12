@@ -142,6 +142,7 @@
     <BundleResource Include="Resources\tag.png" />
     <BundleResource Include="Resources\tag%402x.png" />
     <BundleResource Include="Resources\fa-solid-900.ttf" />
+    <BundleResource Include="Resources\SplashLogo" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

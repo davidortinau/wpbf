@@ -72,7 +72,7 @@ namespace WhitePaperBible.ViewModels
             _client = DependencyService.Resolve<IJSONWebClient>();
             FetchPapers();
 
-            PaperSelectedCommand = new Command(PaperSelected);
+            PaperSelectedCommand = new Command<Paper>(PaperSelected);
             AddPaperCommand = new Command(OnAdd);
             RefreshCommand = new Command(FetchPapers);
             LogoutCommand = new Command(Logout);
@@ -101,17 +101,14 @@ namespace WhitePaperBible.ViewModels
             Shell.Current.Navigation.PushModalAsync(new AddPaperPage());
         }
 
-        private async void PaperSelected()
+        private async void PaperSelected(Paper paper)
         {
-            if (SelectedPaper != null)
+            if (paper != null)
             {
-                var AM = DependencyService.Resolve<AppModel>(); 
-                AM.CurrentPaper = SelectedPaper;
-                await Shell.Current.GoToAsync($"paper?id={SelectedPaper.id}");
-
-                SelectedPaper = null;
+                var AM = DependencyService.Resolve<AppModel>();
+                AM.CurrentPaper = paper;
+                await Shell.Current.GoToAsync($"paper?id={paper.id}");
             }
-
         }
 
         string _keywords = string.Empty;

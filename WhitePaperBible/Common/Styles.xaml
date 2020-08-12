@@ -71,21 +71,21 @@
             FontFamily="{StaticResource FontAwesome}"
             Glyph="{x:Static local:IconFont.Plus}"
             Size="24"
-            Color="Black" />
+             />
 
     <FontImageSource
             x:Key="IconSearch"
             FontFamily="{StaticResource FontAwesome}"
             Glyph="{x:Static local:IconFont.Search}"
             Size="18"
-            Color="Black" />
+             />
 
     <FontImageSource
             x:Key="IconOptions"
             FontFamily="{StaticResource FontAwesome}"
             Glyph="{x:Static local:IconFont.EllipsisV}"
             Size="18"
-            Color="Black" />
+             />
 
     <!-- Shell -->
     <Style

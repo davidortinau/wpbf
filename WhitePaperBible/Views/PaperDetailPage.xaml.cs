@@ -30,7 +30,7 @@ namespace WhitePaperBible.Views
                 return;
 
             var isScrollingUp = lastScrollY < ContentWebView.ScrollY;
-            if (isScrollingUp)
+            if (isScrollingUp && ContentWebView.ScrollY > 60)
             {
                 // hide the nav bar and toolbar
                 Shell.SetNavBarIsVisible(this, false);
@@ -40,7 +40,7 @@ namespace WhitePaperBible.Views
             else
             {
                 Debug.WriteLine($"Dif > 100: {(lastScrollY - ContentWebView.ScrollY)}");
-                if ((lastScrollY - ContentWebView.ScrollY) > 100)
+                if (ContentWebView.ScrollY <= 0 || (lastScrollY - ContentWebView.ScrollY) > 200)
                 {
                     Shell.SetNavBarIsVisible(this, true);
                     //BottomToolbar.IsVisible = true;

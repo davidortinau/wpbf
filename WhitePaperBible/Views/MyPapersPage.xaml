@@ -17,7 +17,6 @@
             <ToolbarItem.IconImageSource>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesome}"
-                    Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                     Size="16"
                     Glyph="{x:Static common:IconFont.DoorOpen}" />
             </ToolbarItem.IconImageSource>
@@ -28,7 +27,6 @@
             <ToolbarItem.IconImageSource>
                 <FontImageSource
                     FontFamily="{StaticResource FontAwesome}"
-                    Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                     Size="16"
                     Glyph="{x:Static common:IconFont.Plus}" />
             </ToolbarItem.IconImageSource>
@@ -85,7 +83,7 @@
                     <t:PaperItemTemplate.GestureRecognizers>
                         <TapGestureRecognizer
                             Command="{Binding PaperSelectedCommand,
-                                Source={RelativeSource AncestorType={x:Type vm:PapersViewModel}}}"
+                                Source={RelativeSource AncestorType={x:Type vm:MyPapersViewModel}}}"
                             CommandParameter="{Binding .}" />
                     </t:PaperItemTemplate.GestureRecognizers>
                 </t:PaperItemTemplate>
