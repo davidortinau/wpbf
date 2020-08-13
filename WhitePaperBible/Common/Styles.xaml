@@ -122,7 +122,60 @@
     <Style
                 TargetType="ShellItem"
                 ApplyToDerivedTypes="true"
-                BasedOn="{StaticResource BaseStyle}" />
+                BasedOn="{StaticResource BaseStyle}" >
+        <Setter Property="Shell.FlyoutBackdrop"
+                Value="{AppThemeBinding Dark={StaticResource NeutralPrimary}, Light={StaticResource NeutralLight}}"/>
+        </Style>
+
+    <Style TargetType="Label"
+       Class="FlyoutItemLabelStyle">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor"
+                                    Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Light}, Light={StaticResource TextPrimaryColor_Dark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!--<Style TargetType="Image"
+       Class="FlyoutItemImageStyle">
+        <Setter Property="Aspect"
+            Value="Fill" />
+    </Style>-->
+
+    <Style TargetType="Layout"
+       Class="FlyoutItemLayoutStyle"
+       ApplyToDerivedTypes="True">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                                    Value="Transparent" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor"
+                                    Value="{AppThemeBinding Dark={StaticResource NeutralPrimary}, Light={StaticResource NeutralLight}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+
 
     <!-- Controls -->
     <Style TargetType="Page" ApplyToDerivedTypes="True">
