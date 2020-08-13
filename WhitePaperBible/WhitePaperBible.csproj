@@ -54,6 +54,9 @@
     <Compile Remove="Views\Controls\BottomDrawerContainer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Assets\WPBTermsAndConditions.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Services\AuthenticateUserService.cs" />
     <None Include="Services\BaseService.cs" />
     <None Include="Services\BibleSearchService.cs" />
@@ -74,5 +77,8 @@
     <None Include="Repositories\FavoritesRepository.cs" />
     <None Include="Repositories\PaperRepository.cs" />
     <None Include="Views\Controls\BottomDrawerContainer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\WPBTermsAndConditions.txt" />
   </ItemGroup>
 </Project>

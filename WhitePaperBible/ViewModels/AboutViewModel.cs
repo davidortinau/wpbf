@@ -16,6 +16,8 @@ namespace WhitePaperBible.ViewModels
 
         public ICommand SendEmail { get; set; }
 
+        public Command OpenFile { get; set; }
+
         public AboutViewModel()
         {
             OpenURL = new Command<string>(async (url) =>
@@ -24,6 +26,13 @@ namespace WhitePaperBible.ViewModels
             });
 
             SendEmail = new Command<string>(async (address) => await OnSendEmail(address));
+
+            OpenFile = new Command<string>(OnOpenFile);
+        }
+
+        private async void OnOpenFile(string file)
+        {
+            await Shell.Current.GoToAsync($"view?file={file}");
         }
 
         public async Task OnSendEmail(string address)
@@ -49,8 +58,5 @@ namespace WhitePaperBible.ViewModels
                 // Some other exception occurred
             }
         }
-
     }
-
 }
-

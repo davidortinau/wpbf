@@ -27,14 +27,20 @@
             <TextCell
                 Text="Version: 2.1" />
             <TextCell
-                Command="{Binding OpenUrl}"
+                Command="{Binding OpenURL}"
                 CommandParameter="http://www.whitepaperbible.org"                
                 Text="Visit whitepaperbible.org" />
             <TextCell
+                Command="{Binding OpenURL}"
+                CommandParameter="http://www.gnpcb.org/esv/preface/"
                 Text="Preface to the ESV Bible" />
             <TextCell
-                Text="Licenses" />
+                Command="{Binding OpenURL}"
+                CommandParameter="http://www.crossway.org/page/esv.copyright"
+                Text="Copyrights" />
             <TextCell
+                Command="{Binding OpenFile}"
+                CommandParameter="Assets.WPBTermsAndConditions.txt"
                 Text="Terms and Conditions" />
         </TableSection>
     </TableView>
