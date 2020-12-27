@@ -1,7 +1,9 @@
 ﻿using System;
+using Xamarin.Forms;
 
+[assembly: ExportFont("fa-solid-900.ttf", Alias = "FontAwesome")]
 namespace WhitePaperBible
-{
+{    
 	static class IconFont
 	{
 		public const string Ad = "\uf641";

@@ -17,22 +17,22 @@
         <StackLayout
             Padding="15,0"
             Orientation="Horizontal">
-            <RadioButton
-                Command="{Binding ChangeScopeCommand}"
-                CommandParameter="reference"
-                IsChecked="True"
-                Text="By Reference"
-                GroupName="Scope" />
-            <RadioButton
-                Command="{Binding ChangeScopeCommand}"
-                CommandParameter="keyword"
-                Text="By Keyword"
-                GroupName="Scope" />
-            <RadioButton
-                Command="{Binding ChangeScopeCommand}"
-                CommandParameter="phrase"
-                Text="By Phrase"
-                GroupName="Scope" />
+            <!-- <RadioButton -->
+            <!--     Command="{Binding ChangeScopeCommand}" -->
+            <!--     CommandParameter="reference" -->
+            <!--     IsChecked="True" -->
+            <!--     Text="By Reference" -->
+            <!--     GroupName="Scope" /> -->
+            <!-- <RadioButton -->
+            <!--     Command="{Binding ChangeScopeCommand}" -->
+            <!--     CommandParameter="keyword" -->
+            <!--     Text="By Keyword" -->
+            <!--     GroupName="Scope" /> -->
+            <!-- <RadioButton -->
+            <!--     Command="{Binding ChangeScopeCommand}" -->
+            <!--     CommandParameter="phrase" -->
+            <!--     Text="By Phrase" -->
+            <!--     GroupName="Scope" /> -->
         </StackLayout>
         <CollectionView
             ItemsSource="{Binding Results}">

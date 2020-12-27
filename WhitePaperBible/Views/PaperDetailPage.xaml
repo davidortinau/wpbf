@@ -7,9 +7,7 @@
     xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     ios:Page.UseSafeArea="False"
-    x:Class="WhitePaperBible.Views.PaperDetailPage"
-    Shell.TabBarIsVisible="false"
-    >
+    x:Class="WhitePaperBible.Views.PaperDetailPage">
 
     <ContentPage.BindingContext>
         <vm:PaperDetailViewModel/>

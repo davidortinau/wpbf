@@ -31,7 +31,7 @@
                     <Image>
                         <Image.Source>
                             <FontImageSource
-                                FontFamily="{StaticResource FontAwesome}"
+                                FontFamily="FontAwesome"
                                 Glyph="{x:Static common:IconFont.Star}"
                                 Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                                 Size="82"
@@ -45,8 +45,7 @@
                     <Button
                         Text="Please Login"
                         IsVisible="{Binding NeedsAuthentication}"
-                        BackgroundColor="#CC0000"
-                        TextColor="White"
+                        Style="{StaticResource PrimaryButton}"
                         Margin="30,0"
                         Command="{Binding RefreshCommand}" />
                 </StackLayout>
@@ -66,21 +65,16 @@
                             />
                     </ContentView.GestureRecognizers>
                     <Frame
-                        HasShadow="false"
-                        BackgroundColor="#f1f1f1"
-                        OutlineColor="#f2f2f2"
-                        Padding="15,8"
-                        CornerRadius="4">
+                        Style="{StaticResource FavoriteFrame}"
+                        >
                         <StackLayout
                             Padding="0">
                             <Label
-                                FontSize="15"
+                                Style="{StaticResource H2}"
                                 MaxLines="1"
-                                TextColor="Black"
                                 Text="{Binding title}" />
                             <Label
-                                FontSize="11"
-                                TextColor="Gray"
+                                Style="{StaticResource BodyText}"
                                 Text="{Binding Author.Name}" />
                         </StackLayout>
                     </Frame>

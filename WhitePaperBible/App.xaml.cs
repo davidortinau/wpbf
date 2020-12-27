@@ -1,6 +1,7 @@
 ﻿using MonkeyCache.SQLite;
 using System;
 using System.Threading.Tasks;
+using MonkeyCache;
 using TinyMessenger;
 using WhitePaperBible.Core.Models;
 using Xamarin.Forms;
@@ -12,11 +13,13 @@ namespace WhitePaperBible
 
         public App()
         {
-            Device.SetFlags(new string[] { "SwipeView_Experimental", "RadioButton_Experimental", "AppTheme_Experimental" });
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzczMzAzQDMxMzgyZTM0MmUzMEoxS09YZ0lRdmtxYmxDMmg3Y2NrMzVuYWRPdlR1T0FzcEdQNURqYkJqWkk9");
 
             InitializeComponent();
 
-            Barrel.ApplicationId = "com.simplyprofound.whitepaperbible";            
+            Barrel.ApplicationId = "com.simplyprofound.whitepaperbible";
+            var folder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            BarrelUtils.SetBaseCachePath(folder);
 
             DependencyService.Register<AppModel>();
             DependencyService.Register<TinyMessengerHub>();
@@ -29,6 +32,7 @@ namespace WhitePaperBible
         private void InitUser()
         {
             AppModel m;
+            
             //Dev handles checking if cache is expired
             if (Barrel.Current != null && !Barrel.Current.IsExpired(key: nameof(AppModel)))
             {

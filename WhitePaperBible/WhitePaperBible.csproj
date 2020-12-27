@@ -12,12 +12,15 @@
 
   <ItemGroup>
     <PackageReference Include="MonkeyCache.SQLite" Version="1.5.0-beta" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.4.0.31" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.4.0.31" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1829-pre6" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.2.8" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
     <PackageReference Include="Clancey.SimpleAuth" Version="1.0.52" />
     <PackageReference Include="TinyMessengerStandard" Version="1.0.2" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.0-pre6" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -55,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\WPBTermsAndConditions.txt" />
+    <None Remove="Common\fa-solid-900.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Services\AuthenticateUserService.cs" />
@@ -80,5 +84,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\WPBTermsAndConditions.txt" />
+    <EmbeddedResource Include="Common\fa-solid-900.ttf" />
+    <None Remove="LicenseKeyProvider\SyncfusionLicense.txt" />
+    <EmbeddedResource Include="LicenseKeyProvider\SyncfusionLicense.txt" />
+    <None Remove="Assets\books.json" />
+    <EmbeddedResource Include="Assets\books.json" />
   </ItemGroup>
 </Project>

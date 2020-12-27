@@ -26,7 +26,9 @@ namespace WhitePaperBible.iOS
         {
             DependencyService.Register<IJSONWebClient, WebClient>();
 
-            global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
+            Syncfusion.XForms.iOS.Buttons.SfChipRenderer.Init();
+            Syncfusion.XForms.iOS.Buttons.SfChipGroupRenderer.Init();
+            
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
             LoadApplication(new App());

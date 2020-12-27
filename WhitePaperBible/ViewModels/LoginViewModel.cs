@@ -58,6 +58,18 @@ namespace WhitePaperBible.ViewModels
                 AM.StoreCredentials(Username, Password, _client.UserSessionCookie);
 
                 await _client.OpenURL(Constants.BASE_URI + String.Format("users/{0}/", AM.User.username), MethodEnum.GET, true);
+
+                if (string.IsNullOrEmpty(_client.ResponseText))
+                {
+                    var forgot = await Shell.Current.DisplayAlert("Sorry", "Your username and/or password were not recognized.", "Reset Password", "Try Again");
+                    if (forgot)
+                    {                   
+                        Device.OpenUri(new Uri("http://www.whitepaperbible.org"));
+                    }
+
+                    return;
+                }
+                
                 var user = Newtonsoft.Json.JsonConvert.DeserializeObject < UserDTO >(_client.ResponseText);
                 AM.User.ID = user.User.ID;
                 AM.User.Name = user.User.Name;

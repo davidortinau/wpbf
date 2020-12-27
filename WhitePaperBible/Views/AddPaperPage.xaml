@@ -1,106 +1,221 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:WhitePaperBible.ViewModels"
              xmlns:local="clr-namespace:WhitePaperBible"
-             mc:Ignorable="d"
-             BackgroundColor="White"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             Visual="Material"
+             Shell.PresentationMode="ModalAnimated"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:xForms="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             xmlns:views="clr-namespace:WhitePaperBible.Views;assembly=WhitePaperBible"
+             ios:Page.ModalPresentationStyle="PageSheet"
              x:Class="WhitePaperBible.Views.AddPaperPage">
     <ContentPage.BindingContext>
         <vm:AddPaperViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="{OnPlatform iOS=88,Default=60}"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <TableView Intent="Form" Grid.Row="1" HasUnevenRows="True">
-            <TableRoot>
-                <TableSection>
-                    <EntryCell Placeholder="Title" Text="{Binding Title}"/>
-                    <ViewCell>
-                        <ContentView Padding="10" HeightRequest="100">
-                            <Editor Placeholder="Description"
-                                    
-                                    Text="{Binding Description}"/>
-                        </ContentView>
-                    </ViewCell>
-                    <ViewCell>
-                        <FlexLayout Direction="Row" 
-                                    JustifyContent="SpaceBetween"
-                                    AlignItems="Center"
-                                    HeightRequest="44"
-                                     Margin="15,0">
-                            <FlexLayout.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding GoToTagsCommand}"/>
-                            </FlexLayout.GestureRecognizers>
-                            <Label Text="Tags" FontSize="16" 
-                                   TextColor="#444444"
-                                   VerticalOptions="Center"/>
-                            <Image>
-                                <Image.Source>
-                                    <FontImageSource
-                                        Color="#4c4c4c"
-                                        Size="14"
-                                        FontFamily="{StaticResource FontAwesome}"
-                                        Glyph="{x:Static local:IconFont.ChevronRight}"/>
-                                </Image.Source>
-                            </Image>
-                        </FlexLayout>
-                    </ViewCell>
-
-                </TableSection>
-                <TableSection Title="VERSES">
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal" HeightRequest="44"
-                                     Margin="15,0">
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding AddVerseCommand}"/>
-                            </StackLayout.GestureRecognizers>
-                            <Image>
-                                <Image.Source>
-                                    <FontImageSource
-                                        Color="#444444"
-                                        Size="14"
-                                        FontFamily="{StaticResource FontAwesome}"
-                                        Glyph="{x:Static local:IconFont.PlusCircle}"/>
-                                </Image.Source>
-                            </Image>
-                            <Label Text="Add Verse" VerticalOptions="Center"/>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
-
-        <FlexLayout BackgroundColor="#444444" Direction="Row"
-                    JustifyContent="SpaceBetween"
-                    Padding="15,0"
+    <Grid RowDefinitions="*,60">
+    <ScrollView>
+        <StackLayout Margin="30,15">
+            <Label Text="Add a paper" FontSize="32" FontAttributes="Bold"/>
+            <Entry Placeholder="Title" Text="{Binding Title}"/>
+            <Editor Placeholder="Description"
+                    AutoSize="TextChanges"
+                    Text="{Binding Description}"/>
+            
+            
+            <Label Text="Tags" FontSize="16" 
+                   TextColor="#444444"
+                   VerticalOptions="Center"/>
+            
+            <buttons:SfChipGroup 
+                Type="Input" 
+                HorizontalOptions="Start"
+                ItemsSource="{Binding Tags}"
+                ShowIcon="True"
+                ChipBackgroundColor="Transparent"
+                DisplayMemberPath="name"
+            >
+                <buttons:SfChipGroup.ChipLayout>
+                    <FlexLayout 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start"
+                        Direction="Row" 
+                        Wrap="Wrap" 
+                        JustifyContent="Start" 
+                        AlignContent="Start" 
+                        AlignItems="Start"/>
+                </buttons:SfChipGroup.ChipLayout>
+                <buttons:SfChipGroup.ItemTemplate>
+                    <DataTemplate>
+                        <buttons:SfChip  Text="{Binding name}"
+                                         BackgroundColor="#f1f1f1"
+                                         CloseButtonColor="Black"
+                                         BorderWidth="0"
+                                         BorderColor="Red"
+                                         TextColor="Black" 
+                                         Clicked="SfChipGroup_OnChipClicked"
+                                         ShowCloseButton="true"/>
+                            
+                    </DataTemplate>
+                </buttons:SfChipGroup.ItemTemplate>
+                    
+                    <buttons:SfChipGroup.InputView>
+                    <Entry 
+                        x:Name="InputEntry"
+                        Visual="Default"
+                        Margin="10,10,0,0"
+                        WidthRequest="110"
+                        VerticalOptions="Center"
+                        Completed="InputEntry_OnCompleted"
+                        Placeholder="Add a tag"
                     >
-            <ImageButton Command="{Binding CancelCommand}"
-                         BackgroundColor="transparent"
-                         >
-                <ImageButton.Source>
-                    <FontImageSource
-                        FontFamily="{StaticResource FontAwesome}"
-                        Glyph="{x:Static local:IconFont.ChevronLeft}"/>
-                </ImageButton.Source>
-            </ImageButton>
-
+                        <Entry.Effects>
+                            <xct:RemoveBorderEffect/>
+                        </Entry.Effects>
+                        
+                    </Entry>
+                        
+                        
+                </buttons:SfChipGroup.InputView>
+            </buttons:SfChipGroup>
+            
+            <Label Text="Verses" FontSize="16" 
+                   TextColor="#444444"/>
+            <buttons:SfChipGroup 
+                Type="Input" 
+                HorizontalOptions="Start"
+                ItemsSource="{Binding References}"
+                ShowIcon="True"
+                ChipBackgroundColor="Transparent"
+                DisplayMemberPath="reference"
+            >
+                <buttons:SfChipGroup.ChipLayout>
+                    <FlexLayout 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start"
+                        Direction="Row" 
+                        Wrap="Wrap" 
+                        JustifyContent="Start" 
+                        AlignContent="Start" 
+                        AlignItems="Start"/>
+                </buttons:SfChipGroup.ChipLayout>
+                <buttons:SfChipGroup.ItemTemplate>
+                    <DataTemplate>
+                        <buttons:SfChip  Text="{Binding reference}"
+                                         BackgroundColor="{StaticResource PrimaryColor}"
+                                         CloseButtonColor="White"
+                                         BorderWidth="0"
+                                         TextColor="White" 
+                                         Clicked="Verse_OnChipClicked"
+                                         ShowCloseButton="true"/>
+                            
+                    </DataTemplate>
+                </buttons:SfChipGroup.ItemTemplate>
+                    
+                    <buttons:SfChipGroup.InputView>
+                    <Entry 
+                        x:Name="VerseInputEntry"
+                        Visual="Default"
+                        Margin="10,10,0,0"
+                        WidthRequest="110"
+                        VerticalOptions="Center"
+                        Completed="VerseInputEntry_OnCompleted"
+                        Placeholder="Add a verse"
+                    >
+                        <Entry.Effects>
+                            <xct:RemoveBorderEffect/>
+                        </Entry.Effects>
+                        
+                    </Entry>
+                        
+                        
+                </buttons:SfChipGroup.InputView>
+            </buttons:SfChipGroup>
+            
+            <!-- <xForms:SfPicker x:Name="bookPicker" -->
+            <!--                  ItemsSource="{Binding Books}" -->
+            <!--                  SelectedItem="{Binding SelectedBook}" -->
+            <!--                  DisplayMemberPath="Name" -->
+            <!--                  HeaderHeight="40" -->
+            <!--                  ShowHeader="true" -->
+            <!--                  HeaderText="Book" -->
+            <!--                  SelectedItemFontSize="20" -->
+            <!--                  UnSelectedItemFontSize="20" -->
+            <!--                  ShowColumnHeader="True" -->
+            <!--                  ColumnHeaderHeight="46" -->
+            <!--                  PickerMode="Default" -->
+            <!--                  ItemHeight="40" -->
+            <!--                  PickerHeight="350" -->
+            <!--                  PickerWidth="350" -->
+            <!--                  ShowFooter="True" FooterHeight="46"> -->
+            <!--     <xForms:SfPicker.Behaviors> -->
+            <!--         <views:SfPickerBehavior /> -->
+            <!--     </xForms:SfPicker.Behaviors> -->
+            <!-- </xForms:SfPicker> -->
+            <!-- <xForms:SfPicker x:Name="chapterPicker" -->
+            <!--                  HeaderHeight="40" -->
+            <!--                  ItemsSource="{Binding Chapters}" -->
+            <!--                  SelectedItem="{Binding SelectedChapter}" -->
+            <!--                  ShowHeader="true" -->
+            <!--                  HeaderText="Chapter" -->
+            <!--                  SelectedItemFontSize="20" -->
+            <!--                  UnSelectedItemFontSize="20" -->
+            <!--                  ShowColumnHeader="True" -->
+            <!--                  ColumnHeaderHeight="46" -->
+            <!--                  PickerMode="Dialog" -->
+            <!--                  ItemHeight="40" -->
+            <!--                  PickerHeight="350" -->
+            <!--                  PickerWidth="350" -->
+            <!--                  ShowFooter="True" FooterHeight="46"> -->
+            <!--     <xForms:SfPicker.Behaviors> -->
+            <!--         <views:SfPickerBehavior /> -->
+            <!--     </xForms:SfPicker.Behaviors> -->
+            <!-- </xForms:SfPicker> -->
+            <!-- <xForms:SfPicker x:Name="versePicker" -->
+            <!--                  HeaderHeight="40" -->
+            <!--                  ItemsSource="{Binding Verses}" -->
+            <!--                  SelectedItem="{Binding SelectedVerse}" -->
+            <!--                  ShowHeader="true" -->
+            <!--                  HeaderText="Verse" -->
+            <!--                  SelectedItemFontSize="20" -->
+            <!--                  UnSelectedItemFontSize="20" -->
+            <!--                  ShowColumnHeader="True" -->
+            <!--                  ColumnHeaderHeight="46" -->
+            <!--                  PickerMode="Dialog" -->
+            <!--                  ItemHeight="40" -->
+            <!--                  PickerHeight="350" -->
+            <!--                  PickerWidth="350" -->
+            <!--                  ShowFooter="True" FooterHeight="46"> -->
+            <!--     <xForms:SfPicker.Behaviors> -->
+            <!--         <views:SfPickerBehavior /> -->
+            <!--     </xForms:SfPicker.Behaviors> -->
+            <!-- </xForms:SfPicker> -->
+            <!-- <ListView ItemsSource="{Binding References}" -->
+            <!-- /> -->
+            
+            
+        </StackLayout>
+    </ScrollView>
+    
+        <FlexLayout 
+            Grid.Row="1"
+            Direction="Row"
+            VerticalOptions="End">
+            
+            <Button Text="Cancel"
+                    FlexLayout.Basis="0.5"
+                    Style="{StaticResource SecondaryButton}"
+                    Command="{Binding CancelCommand}"/>
             <Button Text="Save"
-                    TextColor="White"
-                    BackgroundColor="transparent"
+                    FlexLayout.Basis="0.5"
+                    Style="{StaticResource PrimaryButton}"
                     Command="{Binding SaveCommand}"/>
-
         </FlexLayout>
         
     </Grid>
-
+    
 
 </ContentPage>

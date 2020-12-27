@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using WhitePaperBible.Core.Services;
+using WhitePaperBible.Models;
 
 namespace WhitePaperBible.Core.Models
 {
@@ -58,6 +60,8 @@ namespace WhitePaperBible.Core.Models
             set;
         }
 
+        public List<Book> BibleBooks { get; set; }
+
         public virtual List<Paper> FilterPapers(string query)
         {
             return Papers.Where(ce => (ce.title.ToLower().Contains(query))).ToList();
@@ -76,6 +80,8 @@ namespace WhitePaperBible.Core.Models
         public AppModel()
         {
             IsLoggedIn = false;
+
+            BibleBooks = LoadBooksService.Load();
         }
 
         public void StoreCredentials(string userName, string password, SessionCookie cookie)

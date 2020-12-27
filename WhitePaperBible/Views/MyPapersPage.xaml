@@ -16,7 +16,7 @@
         <ToolbarItem Text="Logout" Command="{Binding LogoutCommand}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource
-                    FontFamily="{StaticResource FontAwesome}"
+                    FontFamily="FontAwesome"
                     Size="16"
                     Glyph="{x:Static common:IconFont.DoorOpen}" />
             </ToolbarItem.IconImageSource>
@@ -26,7 +26,7 @@
             Command="{Binding AddPaperCommand}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource
-                    FontFamily="{StaticResource FontAwesome}"
+                    FontFamily="FontAwesome"
                     Size="16"
                     Glyph="{x:Static common:IconFont.Plus}" />
             </ToolbarItem.IconImageSource>
@@ -52,7 +52,7 @@
                     <Image>
                         <Image.Source>
                             <FontImageSource
-                                FontFamily="{StaticResource FontAwesome}"
+                                FontFamily="FontAwesome"
                                 Glyph="{x:Static common:IconFont.PersonBooth}"
                                 Color="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"
                                 Size="82"

@@ -31,16 +31,6 @@
                 color:white;
             }
 
-            entry {
-                color: #333;
-            }
-
-            button {
-                background-color: #1F7A8C;
-                margin: 25 20 0;
-                height: 60;
-            }
-
             .Valid {
                 background-color: #fff;
             }
@@ -78,35 +68,23 @@
                     <Label Text="Login" StyleClass="logo"/>
                     <Entry x:Name="UserNameEntry" 
                            Text="{Binding Username}"
-                           IsSpellCheckEnabled="false" 
-                           Visual="Material"
                            ReturnType="Next"
-                           TextColor="White"
-                           PlaceholderColor="White"
-                           BackgroundColor="Transparent"
                            Placeholder="UserName">
                     </Entry>
                     <Entry x:Name="PasswordEntry" 
                            Text="{Binding Password}"
                            Placeholder="Password" 
-                           Visual="Material"
                            ReturnType="Go"
                            ReturnCommand="{Binding LoginCommand}"
-                           TextColor="White"
-                           PlaceholderColor="White"
-                           BackgroundColor="Transparent"
                            IsPassword="true">
                     </Entry>
                     <BoxView FlexLayout.Basis="1" FlexLayout.Grow="1"/>
                     <Button Text="Log in" 
-                            Visual="Material"
-                            BackgroundColor="{StaticResource PrimaryColor}"
+                            Style="{StaticResource PrimaryButton}"
                             Command="{Binding LoginCommand}"/>
                     <Button Text="Cancel" 
+                            Style="{StaticResource SecondaryButton}"
                             Margin="10"
-                            TextColor="White"
-                            BackgroundColor="Transparent" 
-                            Visual="Default"
                             Command="{Binding CloseModalCommand}"/>
                 </FlexLayout>
             </Frame>
