@@ -137,7 +137,7 @@
             Value="Fill" />
     </Style>-->
 
-    <Style TargetType="Layout"
+    <!--<Style TargetType="Layout"
        Class="FlyoutItemLayoutStyle"
        ApplyToDerivedTypes="True">
         <Setter Property="VisualStateManager.VisualStateGroups">
@@ -158,7 +158,7 @@
                 </VisualStateGroup>
             </VisualStateGroupList>
         </Setter>
-    </Style>
+    </Style>-->
 
 
 
@@ -253,6 +253,7 @@
     
     <Style x:Key="H2" TargetType="Label">
         <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
     
     <Style x:Key="H3" TargetType="Label">

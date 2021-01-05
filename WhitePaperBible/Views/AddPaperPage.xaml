@@ -16,19 +16,40 @@
         <vm:AddPaperViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="*,60">
+    <Grid RowDefinitions="*,80">
     <ScrollView>
-        <StackLayout Margin="30,15">
+        <StackLayout Margin="30,15" Spacing="20">
             <Label Text="Add a paper" FontSize="32" FontAttributes="Bold"/>
-            <Entry Placeholder="Title" Text="{Binding Title}"/>
-            <Editor Placeholder="Description"
-                    AutoSize="TextChanges"
-                    Text="{Binding Description}"/>
+            <Label Text="Title" 
+                   Style="{StaticResource H2}"
+            />
+            <Frame BackgroundColor="#f1f1f1">
+                <Entry Placeholder="Love, Hope, and Peace" 
+                       Visual="Default" 
+                       Text="{Binding Title}">
+                    <Entry.Effects>
+                        <xct:RemoveBorderEffect/>
+                    </Entry.Effects>
+                            
+                </Entry>
+            </Frame>
+            <Label Text="Description" 
+                   Style="{StaticResource H2}"
+            />
+            <Frame BackgroundColor="#f1f1f1">
+                <Editor Placeholder="These verses are about..."
+                        Visual="Default"
+                        AutoSize="TextChanges"
+                        Text="{Binding Description}">
+                    <Editor.Effects>
+                        <xct:RemoveBorderEffect/>
+                    </Editor.Effects>
+                </Editor>
+            </Frame>
             
-            
-            <Label Text="Tags" FontSize="16" 
-                   TextColor="#444444"
-                   VerticalOptions="Center"/>
+            <Label Text="Tags" 
+                   Style="{StaticResource H2}"
+            />
             
             <buttons:SfChipGroup 
                 Type="Input" 
@@ -56,6 +77,7 @@
                                          BorderWidth="0"
                                          BorderColor="Red"
                                          TextColor="Black" 
+                                         FlexLayout.AlignSelf="Center"
                                          Clicked="SfChipGroup_OnChipClicked"
                                          ShowCloseButton="true"/>
                             
@@ -66,9 +88,7 @@
                     <Entry 
                         x:Name="InputEntry"
                         Visual="Default"
-                        Margin="10,10,0,0"
-                        WidthRequest="110"
-                        VerticalOptions="Center"
+                        FlexLayout.AlignSelf="Center"
                         Completed="InputEntry_OnCompleted"
                         Placeholder="Add a tag"
                     >
@@ -82,8 +102,8 @@
                 </buttons:SfChipGroup.InputView>
             </buttons:SfChipGroup>
             
-            <Label Text="Verses" FontSize="16" 
-                   TextColor="#444444"/>
+            <Label Text="Verses" 
+                   Style="{StaticResource H2}"/>
             <buttons:SfChipGroup 
                 Type="Input" 
                 HorizontalOptions="Start"
@@ -109,6 +129,7 @@
                                          CloseButtonColor="White"
                                          BorderWidth="0"
                                          TextColor="White" 
+                                         FlexLayout.AlignSelf="Center"
                                          Clicked="Verse_OnChipClicked"
                                          ShowCloseButton="true"/>
                             
@@ -119,9 +140,7 @@
                     <Entry 
                         x:Name="VerseInputEntry"
                         Visual="Default"
-                        Margin="10,10,0,0"
-                        WidthRequest="110"
-                        VerticalOptions="Center"
+                        FlexLayout.AlignSelf="Center"
                         Completed="VerseInputEntry_OnCompleted"
                         Placeholder="Add a verse"
                     >
@@ -201,16 +220,17 @@
     </ScrollView>
     
         <FlexLayout 
-            Grid.Row="1"
-            Direction="Row"
-            VerticalOptions="End">
+            Grid.Row="1" 
+            JustifyContent="SpaceAround"
+            Direction="Row">
             
             <Button Text="Cancel"
-                    FlexLayout.Basis="0.5"
+                    FlexLayout.Basis="48%"
                     Style="{StaticResource SecondaryButton}"
+                    BackgroundColor="{StaticResource NeutralDark}"
                     Command="{Binding CancelCommand}"/>
             <Button Text="Save"
-                    FlexLayout.Basis="0.5"
+                    FlexLayout.Basis="48%"
                     Style="{StaticResource PrimaryButton}"
                     Command="{Binding SaveCommand}"/>
         </FlexLayout>

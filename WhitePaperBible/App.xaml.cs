@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MonkeyCache;
 using TinyMessenger;
 using WhitePaperBible.Core.Models;
+using Xamarin.CommunityToolkit.UI.Views.Options;
 using Xamarin.Forms;
 
 namespace WhitePaperBible
@@ -25,7 +26,7 @@ namespace WhitePaperBible
             DependencyService.Register<TinyMessengerHub>();
 
             InitUser();
-
+            
             MainPage = new AppShell();
         }
 

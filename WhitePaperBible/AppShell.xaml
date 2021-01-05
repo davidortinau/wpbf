@@ -27,7 +27,7 @@
                 ContentTemplate="{DataTemplate local:PapersPage}" />
         </ShellSection>
     </FlyoutItem>
-    <FlyoutItem Title="Tags">
+    <FlyoutItem Title="Tags" Route="tags">
         <FlyoutItem.Icon>
             <FontImageSource
                     Size="16"
@@ -89,7 +89,7 @@
         </ShellSection>
     </FlyoutItem>
 
-    <Shell.FlyoutHeaderTemplate>
+    <!--<Shell.FlyoutHeaderTemplate>
         <DataTemplate>
             <Grid HeightRequest="200" Padding="30" 
                   RowDefinitions="120,10,*"
@@ -109,6 +109,6 @@
 
             </Grid>
         </DataTemplate>
-    </Shell.FlyoutHeaderTemplate>
+    </Shell.FlyoutHeaderTemplate>-->
 
 </Shell>

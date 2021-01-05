@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using MaterialComponents;
 using UIKit;
 using WhitePaperBible.Core.Services;
+using Xamarin.CommunityToolkit.UI.Views.Options;
 using Xamarin.Forms;
 
 namespace WhitePaperBible.iOS

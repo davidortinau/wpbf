@@ -56,13 +56,13 @@
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.4.0.31" />
     <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.4.0.31" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.0-pre6" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1829-pre6" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
     <PackageReference Include="RestSharp">
       <Version>106.11.5-alpha.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>5.0.0.1829-pre6</Version>
+      <Version>5.0.0.1874</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

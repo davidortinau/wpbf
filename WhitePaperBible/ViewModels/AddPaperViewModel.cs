@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Newtonsoft.Json;
+using TinyMessenger;
+using WhitePaperBible.Core;
 using WhitePaperBible.Core.Models;
 using WhitePaperBible.Core.Services;
 using WhitePaperBible.Models;
@@ -143,6 +147,7 @@ namespace WhitePaperBible.ViewModels
         {
             var t = _references.Single(x => x.reference == obj);
             _references.Remove(t);
+            Paper.references = _references.ToList();
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(References)));
         }
 
@@ -155,6 +160,7 @@ namespace WhitePaperBible.ViewModels
             {
                 reference =  obj
             });
+            Paper.references = _references.ToList();
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(References)));
         }
 
@@ -162,6 +168,7 @@ namespace WhitePaperBible.ViewModels
         {
             var t = _tags.Single(x => x.name == tag);
             _tags.Remove(t);
+            Paper.tags = _tags.ToList();
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(Tags)));
         }
 
@@ -170,19 +177,64 @@ namespace WhitePaperBible.ViewModels
             if (Tags == null)
                 Tags = new ObservableCollection<Tag>();
             Tags.Add(new Tag(){name =  tag});
+            Paper.tags = _tags.ToList();
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(nameof(Tags)));
         }
 
         private async Task OnCancel()
         {
-            await Shell.Current.Navigation.PopModalAsync();
+            await Shell.Current.GoToAsync("..?msg=Canceled");   
         }
 
         private async Task OnSave()
         {
-            await Shell.Current.Navigation.PopModalAsync();
+            IJSONWebClient _client;
+            _client = DependencyService.Resolve<IJSONWebClient>();
+            var url = Constants.BASE_URI;
+
+            if (Paper.id <= 0)
+            {
+                // create
+                url += String.Format("papers?paper[title]={0}&paper[description]={1}&user_id={2}&paper[tag_list]={3}",
+                    Title, Description, AM.User.ID, Paper.TagsString());
+                url += "&caller=wpb-iPhone";
+                Debug.WriteLine($"URL: {url}");
+                await _client.OpenURL (url, MethodEnum.POST, true);
+                var payload = Newtonsoft.Json.JsonConvert.DeserializeObject<PaperNode>(_client.ResponseText);
+                if (payload == null || payload.paper == null)
+                    return; // bail here, throw some kind of error message
+
+                Paper.id = payload.paper.id;
+                Paper.title = payload.paper.title;
+                Paper.description = payload.paper.description;
+                
+                // update to add references
+                // url = Constants.BASE_URI;
+                // url += String.Format ("papers/update/{0}?paper[title]={1}&paper[description]={2}&user_id={3}&paper[tag_list]={4}", Paper.id, Paper.title, Paper.description, AM.User.ID, Paper.TagsString());
+                // url += "&caller=wpb-iPhone";
+                
+                // now add references
+                foreach(var r in Paper.references){
+                    // url += String.Format("&paper[references_attributes][{0}][id]={1}", r.id, r.id);
+                    // url += String.Format("&paper[references_attributes][{0}][paper_id]={1}", r.id, Paper.id);
+                    // url += String.Format("&paper[references_attributes][{0}][reference]={1}", r.id, r.reference);
+                    // url += String.Format("&paper[references_attributes][{0}][_delete]={1}", r.id, r.delete);// i guess set this if to be deleted?
+                    
+                    var refUrl = Constants.BASE_URI + String.Format("papers/{0}/references?reference[reference]={1}&reference[paper_id]={2}", Paper.id, r.reference, Paper.id);
+                    Debug.WriteLine($"URL: {refUrl}");
+                    await _client.OpenURL(refUrl, MethodEnum.POST, true);
+                }
+            }
+
+            // DependencyService.Get<TinyMessengerHub>().Publish(new );
+            await Shell.Current.GoToAsync("..?msg=Paper%20Saved");
+            // await Shell.Current.Navigation.PopModalAsync();
         }
 
+        // internal class Payload
+        // {
+        //     [JsonProperty("paper")]
+        //     public Paper Paper { get; set; }
+        // }
     }
-
 }
