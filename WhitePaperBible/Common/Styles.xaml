@@ -105,14 +105,14 @@
                     Value="#CC0000" />
     </Style>
     <Style
-                TargetType="ShellItem"
+                TargetType="FlyoutItem"
                 ApplyToDerivedTypes="true"
                 BasedOn="{StaticResource BaseStyle}" >
         <Setter Property="Shell.FlyoutBackdrop"
                 Value="{AppThemeBinding Dark={StaticResource NeutralPrimary}, Light={StaticResource NeutralLight}}"/>
     </Style>
 
-    <Style TargetType="Label"
+    <!--<Style TargetType="Label"
        Class="FlyoutItemLabelStyle">
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
@@ -129,7 +129,7 @@
                 </VisualStateGroup>
             </VisualStateGroupList>
         </Setter>
-    </Style>
+    </Style>-->
 
     <!--<Style TargetType="Image"
        Class="FlyoutItemImageStyle">
